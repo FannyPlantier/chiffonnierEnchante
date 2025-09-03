@@ -51,6 +51,14 @@ h4{
     text-transform: uppercase;
 }
 
+h5{
+    font-family: 'livvic-semiBold';
+    font-size: larger;
+	  padding: 1rem 0 1.5rem 25rem;
+    color: #d63e4c;
+    text-transform: uppercase;
+}
+
 .separateur-titre{
 	  width: 40rem;
     position: relative;  
@@ -486,6 +494,41 @@ h4{
   padding: 0 20rem 5rem 20rem;
 }
 
+.citation-troc{
+	padding: 0 20rem 5rem 20rem;
+  line-height: 1.7;
+  color:#ffaf00;
+  font-size: larger;
+  font-style: bold;
+}
+
+.troc-photo-texte{
+	padding: 0 15rem 2rem 15rem;
+	line-height: 1.7;
+}
+
+.troc-paragraphe{
+	padding: 0 25rem 2rem 20rem;
+	line-height: 1.7;
+}
+
+.troc-photo-texte img{
+	border-radius: 5rem;
+}
+
+.troc-appel-a-orga{
+	padding: 0 20rem 5rem 20rem;
+  line-height: 1.7;
+  color:#d34a24;
+  font-size: larger;
+  font-style: bold;
+  text-transform: uppercase;
+}
+
+.troc-appel-a-orga a{
+  color: #d34a24;
+  text-decoration: underline;
+}
 
 /* ================= page en construction ================= */
 .construction-paragraphe {
@@ -500,7 +543,7 @@ h4{
 
 /* ================= page contact ================= */
 .page-contact-paragraphe{
-padding: 0 20rem 2rem 20rem;
+padding: 0 20rem 3rem 19rem;
 }
 
 .page-contact-formulaire {

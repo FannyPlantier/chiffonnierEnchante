@@ -34,4 +34,4 @@ wp-content/uploads/
 *.tar.gz
 
 # Données sensibles
-.wp-config.php
+wp-config.php
