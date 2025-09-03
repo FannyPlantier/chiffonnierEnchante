@@ -1,0 +1,168 @@
+@font-face {
+    font-family: 'livvic-Regular';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff2/Livvic-Regular.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff/Livvic-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'livvic-Bold';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff2/Livvic-Bold.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff/Livvic-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'livvic-Italic';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff2/Livvic-Italic.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff/Livvic-Italic.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'livvic-Black';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff2/Livvic-Black.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff/Livvic-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'livvic-BlackItalic';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff2/Livvic-BlackItalic.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff/Livvic-BlackItalic.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'livvic-BoldItalic';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff2/Livvic-BoldItalic.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff/Livvic-BoldItalic.woff') format('woff');
+    font-weight: 700;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'livvic-ExtraLight';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff2/Livvic-ExtraLight.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff/Livvic-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'livvic-ExtraLightItalic';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff2/Livvic-ExtraLightItalic.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff/Livvic-ExtraLightItalic.woff') format('woff');
+    font-weight: 200;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'livvic-Light';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff2/Livvic-Light.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff/Livvic-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'livvic-LightItalic';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff2/Livvic-LightItalic.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff/Livvic-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'livvic-Medium';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff2/Livvic-Medium.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff/Livvic-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'livvic-MediumItalic';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff2/Livvic-MediumItalic.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff/Livvic-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'livvic-SemiBold';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff2/Livvic-SemiBold.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff/Livvic-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'livvic-SemiBoldItalic';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff2/Livvic-SemiBoldItalic.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff/Livvic-SemiBoldItalic.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'livvic-Thin';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff2/Livvic-Thin.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff/Livvic-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'livvic-ThinItalic';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff2/Livvic-ThinItalic.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/livvic/livvic-woff/Livvic-ThinItalic.woff') format('woff');
+    font-weight: 100;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'arimo-Bold';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/arimo/arimo-woff2/Arimo-Bold.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/arimo/arimo-woff/Arimo-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'arimo-BoldItalic';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/arimo/arimo-woff2/Arimo-BoldItalic.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/arimo/arimo-woff/Arimo-BoldItalic.woff') format('woff');
+    font-weight: 700;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'arimo-Italic';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/arimo/arimo-woff2/Arimo-Italic.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/arimo/arimo-woff/Arimo-Italic.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'arimo-Medium';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/arimo/arimo-woff2/Arimo-Medium.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/arimo/arimo-woff/Arimo-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'arimo-MediumItalic';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/arimo/arimo-woff2/Arimo-MediumItalic.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/arimo/arimo-woff/Arimo-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'arimo-Regular';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/arimo/arimo-woff2/Arimo-Regular.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/arimo/arimo-woff/Arimo-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'arimo-SemiBold';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/arimo/arimo-woff2/Arimo-SemiBold.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/arimo/arimo-woff/Arimo-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'arimo-SemiBoldItalic';
+    src: url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/arimo/arimo-woff2/Arimo-SemiBoldItalic.woff2') format('woff2'),
+       url('http://localhost/chiffonnier/wp-content/themes/chiffonnierTheme/assets/fonts/arimo/arimo-woff/Arimo-SemiBoldItalic.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+}

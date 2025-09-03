@@ -1,0 +1,37 @@
+# Système
+.DS_Store
+Thumbs.db
+
+# IDE / éditeurs
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Dépendances PHP
+/vendor/
+
+# Dépendances JS
+/node_modules/
+
+# Environnements locaux
+.env
+.env.local
+
+# Fichiers de cache
+*.cache
+*.tmp
+
+# Uploads (optionnel si tu ne veux pas versionner les médias)
+wp-content/uploads/
+
+# Backups / exports DB
+*.sql
+*.sql.gz
+*.zip
+*.tar
+*.tar.gz
+
+# Données sensibles
+.wp-config.php

@@ -1,0 +1,517 @@
+/*
+Theme Name: Chiffonnier
+Template : twentytwentyfive
+Author: Fanny Plantier
+*/
+
+/* ================= styles globaux ================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    font-family: 'arimo-regular', sans-serif;
+    background-color: white;
+}
+
+h1{
+  font-family: 'livvic-semiBold';
+	padding: 5rem 25rem 0 19rem;
+	color: #d34a24;
+	text-transform: uppercase;
+  font-size: 3rem;
+}
+
+
+h2{
+  font-family: 'livvic-semiBold';
+	padding: 0 0 1.5rem 25rem;
+	color:#3c7f72;
+	text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+} 
+
+  h3{
+  font-family: 'livvic-semiBold';
+	padding: 0 0 1.5rem 25rem;
+	color:#992800;
+	text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+} 
+
+h4{
+    font-family: 'livvic-semiBold';
+    padding-top: 1.5rem;
+    color: #ffaf00;
+    text-transform: uppercase;
+}
+
+.separateur-titre{
+	  width: 40rem;
+    position: relative;  
+    left: 19rem; 
+    margin: 2rem 0 5rem 0;  
+    background-color: #d34a24;
+    border: solid 0.1rem #d34a24;
+}
+
+.separateur-hr{
+  width: 40%;
+  margin: 5rem auto; 
+
+}
+
+.paragraphe{
+	padding: 0 25rem 5rem 20rem;
+	line-height: 1.7;
+}
+
+
+/* ================= footer ================= */
+#mon-footer {
+    font-size: 0.8rem;
+    font-family: 'livvic', sans-serif;
+    position: relative;
+    bottom: 0%;
+    width: 100%;
+}
+
+.blue-background {
+    background-color: #104b4d;
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem;
+}
+
+.chiffonnier {
+    color: #ffaf00;
+    font-weight: bold;
+}
+
+.enchante {
+    color: #d34a24;
+    font-weight: bold;
+}
+
+.upper {
+    text-transform: uppercase;
+}
+
+.mentions-legales-lien {
+    color: white;
+    text-decoration: underline;
+}
+
+/* ================= menu principal ================= */
+/* header */
+#mon-header {
+    background-color: #104b4d;
+    color: #ffffff;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1001;
+    font-family: 'livvic-regular', sans-serif;
+}
+
+/* navigation */
+#primary-nav {
+  display: flex;
+  flex: 1;
+  position: static;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: auto;
+  height: auto;
+  background: none;
+  box-shadow: none;
+  transition: none;
+  z-index: 2000;
+}
+
+
+#primary-nav ul {
+  display: flex;
+  gap: 1.875rem;
+  text-transform: uppercase;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-direction: row;
+  align-items: center;
+}
+
+#primary-nav ul li {
+  position: relative;
+}
+
+#primary-nav ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  display: block;
+  transition: background 0.2s;
+}
+
+#primary-nav ul li a:hover {
+  color: #ffaf00;
+}
+
+/* sous-menus */
+#primary-nav ul ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #104b4d;
+  box-shadow: 0 0.125rem 0.125rem rgba(0,0,0,0.1);
+  min-width: 11.25rem;
+  z-index: 1000;
+  text-transform: none;
+  font-size: 0.8rem;
+}
+
+#primary-nav ul li:hover > ul {
+  display: block;
+}
+
+#primary-nav ul ul li {
+  width: 100%;
+}
+
+#primary-nav ul ul li a {
+  padding: 0.625rem 1rem;
+  color: #fff;
+  background: #104b4d;
+}
+
+#primary-nav ul ul li a:hover {
+  background: #992800;
+  color: #ffaf00;
+}
+
+/* menu burger */
+.menu-icon,
+.menu-icon::before,
+.menu-icon::after {
+  display: block;
+  width: 30px;
+  height: 4px;
+  background: #fff;
+  position: relative;
+  transition: all 0.3s;
+  border-radius: 2px;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+
+.menu-icon::before {
+  top: -10px;
+}
+
+.menu-icon::after {
+  top: 10px;
+}
+
+/* animation burger en croix */
+.menu-open #menu-toggle .menu-icon {
+  background: transparent;
+}
+.menu-open #menu-toggle .menu-icon::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+.menu-open #menu-toggle .menu-icon::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+/* affichage du menu et overlay quand actif */
+.menu-open #primary-nav {
+  transform: translateX(0);
+  left: 0;
+}
+
+/* styles pour le logo */
+.site-logo {
+  height: 5rem;
+  width: auto; 
+  max-width: 100%;
+}
+
+/* media queries pour rendre les tailles de police responsive */
+@media (max-width: 1200px) {
+  #mon-footer, #mon-header nav ul ul {
+    font-size: 0.75rem; /* 12px / 16px = 0.75rem */
+  }
+}
+
+@media (max-width: 768px) {
+  #mon-footer, #mon-header nav ul ul {
+    font-size: 0.625rem; /* 10px / 16px = 0.625rem */
+  }
+}
+
+@media (max-width: 480px) {
+  #mon-footer, #primary-nav,
+  #primary-nav ul,
+  #primary-nav ul li,
+  #primary-nav ul li a  {
+    font-size: 0.5rem; /* 8px / 16px = 0.5rem */
+  }
+}
+
+/* bouton burger caché sur desktop */
+@media (min-width: 769px) {
+  #primary-nav {
+    position: static;
+    transform: none;
+    width: auto;
+    height: auto;
+    background: none;
+    box-shadow: none;
+    display: flex;
+    flex-direction: row;
+  }
+  #menu-toggle {
+    display: none;
+  }
+}
+
+/* responsive mobile-tablette */
+@media (max-width: 768px) {
+  #mon-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-direction: row;
+  }
+
+   #menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 2100;
+    position: relative;
+    margin-right: 0.5rem;
+    margin-left: 0;
+    order: 1;
+  }
+
+  .site-logo {
+    order: 2;
+  }
+
+  #primary-nav {
+    order: 3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 33.33vw;
+    height: 100vh;
+    background: #104b4d; /* opaque à 100% */
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 2000;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: flex;
+    padding-top: 2rem;
+    overflow: hidden;
+  }
+
+  .menu-open #primary-nav {
+    transform: translateX(0);
+    left: 0;
+  }
+
+  #primary-nav ul {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* décalage éléments menu vers les bas quand ouverture sous-menu */
+@media (max-width: 768px) {
+  #primary-nav ul ul {
+    transition: max-height 0.4s, opacity 0.4s;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    position: static;
+    background: #104b4d;
+    box-shadow: none;
+    margin-left: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #primary-nav ul li:hover > ul,
+  #primary-nav ul li:focus-within > ul {
+    max-height: 500px; 
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #primary-nav ul ul {
+    margin-left: 0.3rem;
+  }
+}
+
+/* ================= page accueil ================= */
+.texte-3-colonnes{
+	padding: 0 20rem 5rem 20rem;
+	column-gap: 5%;
+	line-height: 1.7;
+}
+
+.citation-accueil{
+	padding-bottom: 5rem;
+  color:#ffaf00;
+  font-size: xx-large;
+  font-style: italic;
+}
+
+/* ================= page conférences ================= */
+.conf-titre{
+	color:#3c7f72;
+	text-transform: uppercase;
+	font-weight:bold;
+}
+
+.conf-liste{
+		padding: 0 5rem 5rem 20rem;
+}
+
+.conf-item{
+	padding-bottom: 2rem;
+}
+
+.conf-detail {
+  margin: 1.5rem 10rem 1rem 2rem; 
+  font-size: normal;  
+  font-style: italic;
+  line-height: 1.7;
+  transition: opacity 0.8s ease, max-height 0.8s ease;
+  opacity: 0; 
+  max-height: 0;
+  overflow: hidden;
+}
+
+.conf-item.open .conf-detail {
+  opacity: 1;
+  height: auto;
+}
+
+.conf-chevron i {
+  transition: transform 0.3s;
+}
+
+.conf-item.open .conf-chevron i {
+  transform: rotate(90deg);
+}
+
+/* ================= page ateliers tissage ================= */
+.scolaire-3-colonnes{
+  padding: 0 20rem 10rem 20rem;
+  column-gap: 5%;
+}
+
+.scolaire-1-colonne {
+  padding: 1rem;
+  line-height: 1.3;
+  border-top-right-radius: 3rem;
+  border-bottom-left-radius: 3rem;
+}
+
+.scolaire-1-colonne ul {
+  margin: 0;
+  padding: 2rem 1rem 0 2rem;
+}
+
+.scolaire-1-colonne li{
+  margin-bottom: 0.5rem;
+}
+
+.scolaire-image1{
+  padding: 0 10rem 5rem 20rem;  
+}
+
+.scolaire-chevron-menu{
+  flex-shrink: 0;
+}
+
+.scolaire-photo-g-liste {
+  padding: 1rem 5rem 0rem 10rem;
+}
+
+.scolaire-photo-d-liste {
+  padding: 1rem 10rem 0rem 10rem;
+}
+
+.scolaire-photo-g-liste li, .scolaire-photo-d-liste li, .scolaire-photo-d-liste2 li {
+  line-height: 1.3;
+  padding: 1rem 0 1rem 0;
+  font-size: large;
+}
+
+.scolaire-photo-d-liste2 {
+  padding: 1rem 8rem 5rem 15rem;
+}
+
+
+/* ================= page troc ================= */
+.page-troc-photos {
+  display: flex; /* ou display: grid; */
+  gap: 8rem; /* espace entre les enfants */
+  padding: 0 20rem 5rem 20rem;
+}
+
+
+/* ================= page en construction ================= */
+.construction-paragraphe {
+    padding: 5rem 20rem;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.construction-illustration{
+  padding-bottom: 5rem;
+}
+
+/* ================= page contact ================= */
+.page-contact-paragraphe{
+padding: 0 20rem 2rem 20rem;
+}
+
+.page-contact-formulaire {
+  padding: 0 20rem 5rem 20rem;
+  box-sizing: border-box;
+}
+
+.page-contact-formulaire form {
+  width: 60%; 
+  max-width: none;
+  margin: 0 auto; 
+  padding-bottom : 3rem;
+}
+
