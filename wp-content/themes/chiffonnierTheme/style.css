@@ -439,8 +439,19 @@ h5{
 }
 
 /* ================= page ateliers tissage ================= */
+.ateliers-tissage-photo-haut-page {
+  height: auto;
+  width: 80%;
+  padding-bottom: 4rem;
+  margin: 0 auto;
+}
+
+.ateliers-tissage-photo-haut-page img{
+  border-radius: 1rem;
+}
+
 .scolaire-3-colonnes{
-  padding: 0 20rem 10rem 20rem;
+  padding: 3rem 20rem 2rem 20rem;
   column-gap: 5%;
 }
 
@@ -486,11 +497,36 @@ h5{
   padding: 1rem 8rem 5rem 15rem;
 }
 
+.tissage-h4 {
+    font-family: 'livvic-semiBold';
+    padding: 0 25rem 2rem 25rem;
+    color: #3c7f72;
+    text-transform: uppercase;
+    font-size: larger;
+}
+
+.tissage-2-colonnes {
+  gap: 6%;
+  line-height: 1.7; 
+  padding: 0 20rem 3rem 18rem;
+}
+
+.tissage-2-colonnes p {
+background-color: rgba(255, 174, 0, 0.37);
+padding: 2rem;
+border-radius: 1rem;
+}
+
+.tissage-paragraphe {
+  padding: 0 22rem 2rem 19rem;
+  line-height: 1.7;
+  font-size: larger;
+}
 
 /* ================= page troc ================= */
 .page-troc-photos {
-  display: flex; /* ou display: grid; */
-  gap: 8rem; /* espace entre les enfants */
+  display: flex; 
+  gap: 8rem; 
   padding: 0 20rem 5rem 20rem;
 }
 
