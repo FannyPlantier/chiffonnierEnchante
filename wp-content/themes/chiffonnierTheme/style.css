@@ -517,7 +517,7 @@ h5{
 }
 
 .troc-appel-a-orga{
-	padding: 0 20rem 5rem 20rem;
+	padding: 0 20rem 2rem 20rem;
   line-height: 1.7;
   color:#d34a24;
   font-size: larger;
@@ -528,6 +528,19 @@ h5{
 .troc-appel-a-orga a{
   color: #d34a24;
   text-decoration: underline;
+}
+
+.troc-bouton a{
+  display: flex;
+  justify-content: center;
+  background-color: #ffaf00;
+  color: #2a5b5d;
+  margin-bottom: 5rem;
+}
+
+.troc-bouton a:hover{
+  background-color: #2a5b5d;
+  color: #ffaf00;
 }
 
 /* ================= page en construction ================= */
