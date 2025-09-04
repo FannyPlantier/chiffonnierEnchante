@@ -5,8 +5,8 @@
 <svg xmlns="http://www.w3.org/2000/svg"
      viewBox="0 0 1181 1181">
   <g transform="rotate(-180 590.5 590.5)">
-    <path id="turquoise"
-        fill="#104b4d" stroke="#104b4d" stroke-width="1"
+    <path id="jaune"
+        fill="#ffaf00" stroke="#ffaf00"  stroke-width="1"
  d="M 264.00,0.00
            C 264.00,0.00 309.00,0.00 309.00,0.00
              309.00,0.00 309.00,54.00 309.00,54.00
@@ -68,8 +68,8 @@
              94.55,858.71 92.06,842.72 90.91,826.00
              90.91,826.00 90.00,814.00 90.00,814.00
              90.00,814.00 90.00,0.00 90.00,0.00 Z" />
-    <path id="jaune"
-        fill="#ffaf00" stroke="#ffaf00" stroke-width="1"
+    <path id="turquoise"
+        fill="#104b4d" stroke="#104b4d" stroke-width="1"
         d="M 2.00,0.00
            C 2.00,0.00 45.00,0.00 45.00,0.00
              45.00,0.00 45.00,812.00 45.00,812.00

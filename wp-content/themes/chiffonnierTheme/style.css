@@ -506,19 +506,20 @@ h5{
 }
 
 .tissage-2-colonnes {
-  gap: 6%;
+  gap: 7%;
   line-height: 1.7; 
-  padding: 0 20rem 3rem 18rem;
+  padding: 0 20rem 3rem 15rem;
 }
 
 .tissage-2-colonnes p {
-background-color: rgba(255, 174, 0, 0.37);
+border :#ffaf00 solid 0.8rem;
 padding: 2rem;
 border-radius: 1rem;
+font-size: larger;
 }
 
 .tissage-paragraphe {
-  padding: 0 22rem 2rem 19rem;
+  padding: 0 15rem 4rem 18rem;
   line-height: 1.7;
   font-size: larger;
 }
