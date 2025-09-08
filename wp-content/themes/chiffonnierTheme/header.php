@@ -17,6 +17,5 @@
         <nav id="primary-nav">
             <?php wp_nav_menu(['theme_location' => 'primary']); ?>
         </nav>
-        <div id="menu-overlay"></div>
     </header>
  

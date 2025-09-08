@@ -2,7 +2,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   const body = document.body;
   const menuToggle = document.getElementById('menu-toggle');
-  const menuOverlay = document.getElementById('menu-overlay');
   const primaryNav = document.getElementById('primary-nav');
 
   function openMenu() {
@@ -20,8 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
       openMenu();
     }
   });
-
-  menuOverlay.addEventListener('click', closeMenu);
 });
 
 /* ================= conférence toggle ================= */

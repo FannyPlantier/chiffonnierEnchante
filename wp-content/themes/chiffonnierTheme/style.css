@@ -387,9 +387,17 @@ h5{
 
 /* ================= page accueil ================= */
 .texte-3-colonnes{
+  display: flex;
 	padding: 0 20rem 5rem 20rem;
 	column-gap: 5%;
 	line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .texte-3-colonnes {
+    flex-direction: column;
+    gap: 2rem; /* ou ce que tu veux */
+  }
 }
 
 .citation-accueil{
