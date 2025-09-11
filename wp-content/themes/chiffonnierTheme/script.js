@@ -1,25 +1,19 @@
 /* ================= menu burger ================= */
-document.addEventListener('DOMContentLoaded', function() {
-  const body = document.body;
-  const menuToggle = document.getElementById('menu-toggle');
-  const primaryNav = document.getElementById('primary-nav');
+const menuToggle = document.getElementById('menu-toggle');
+const header = document.getElementById('mon-header');
+const nav = document.getElementById('primary-nav');
 
-  function openMenu() {
-    body.classList.add('menu-open');
-  }
+if (menuToggle && header && nav) {
+  menuToggle.addEventListener('click', () => {
+    header.classList.toggle('menu-open'); // burger → croix
 
-  function closeMenu() {
-    body.classList.remove('menu-open');
-  }
-
-  menuToggle.addEventListener('click', function() {
-    if (body.classList.contains('menu-open')) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', String(!expanded));
+    nav.setAttribute('aria-hidden', String(expanded));
   });
-});
+}
+
+
 
 /* ================= conférence toggle ================= */
 document.addEventListener("DOMContentLoaded", function() {
