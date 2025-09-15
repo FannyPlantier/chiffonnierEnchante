@@ -5,11 +5,15 @@ const nav = document.getElementById('primary-nav');
 
 if (menuToggle && header && nav) {
   menuToggle.addEventListener('click', () => {
-    header.classList.toggle('menu-open'); // burger → croix
+    header.classList.toggle('menu-open');
 
-    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-    menuToggle.setAttribute('aria-expanded', String(!expanded));
-    nav.setAttribute('aria-hidden', String(expanded));
+    // Si le menu vient d'être fermé, on ferme tous les sous-menus
+    if (!header.classList.contains('menu-open')) {
+      const submenus = nav.querySelectorAll('ul ul');
+      submenus.forEach(submenu => {
+        submenu.style.display = 'none';
+      });
+    }
   });
 }
 
