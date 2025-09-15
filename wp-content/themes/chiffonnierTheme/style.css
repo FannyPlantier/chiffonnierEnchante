@@ -1,7 +1,7 @@
 :root {
   --gutter: 2%;
   --nav-gap: 3%;
-  --nav-mobile-width: 33.3333%;
+  --nav-mobile-width: 40%;
 }
 
 body {
@@ -136,7 +136,8 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 4000;        
+    z-index: 4000;   
+    padding: 2%;    
   }
 
   /* logo */
@@ -156,7 +157,7 @@ body {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 1% 5%; /* haut/bas 1%, gauche/droite 5% pour plus d'espace à droite */
+    padding: 1% 5%; 
     z-index: 2100;
   }
 

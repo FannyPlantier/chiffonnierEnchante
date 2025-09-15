@@ -13,6 +13,24 @@ if (menuToggle && header && nav) {
   });
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+  // Sélectionne tous les liens parents qui ont un sous-menu
+  const parentLinks = document.querySelectorAll('#primary-nav ul > li > a');
+
+  parentLinks.forEach(link => {
+    const submenu = link.nextElementSibling;
+    if (submenu && submenu.tagName === 'UL') {
+      link.addEventListener('click', function(e) {
+        // Seulement en mobile/tablette
+        if (window.innerWidth <= 768) {
+          e.preventDefault(); // Empêche la navigation
+          submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        }
+      });
+    }
+  });
+});
+
 
 
 /* ================= conférence toggle ================= */
