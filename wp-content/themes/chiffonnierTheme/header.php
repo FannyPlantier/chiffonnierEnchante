@@ -32,4 +32,3 @@
             ?>
         </nav>
     </header>
-    <main>

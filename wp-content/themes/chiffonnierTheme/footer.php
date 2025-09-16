@@ -1,4 +1,4 @@
-        </main>
+
         <footer id="mon-footer" class="place-width">
             <div>&copy; <?php echo date('Y'); ?> 
                 <span class = "chiffonnier-upper">Chiffonnier</span> 
