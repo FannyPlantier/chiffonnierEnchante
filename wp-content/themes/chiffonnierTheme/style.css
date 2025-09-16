@@ -390,10 +390,6 @@ body {
   }
 
   /* =========== footer ========== */
-  footer {
-    margin-top: 5%;
-  }
-
   #mon-footer {
     text-align: center;
     font-size: small;
@@ -434,7 +430,7 @@ body {
 
   main {
     flex: 1 0 auto;
-    margin-top: 6%
+    margin: 6% 0 3% 0;
   }
 
   h1 {
@@ -460,6 +456,7 @@ body {
   p {
     margin: 0;
     padding: 0 10% 1% 10%;
+    font-size: medium;
   }
 
   blockquote {
@@ -493,7 +490,6 @@ body {
     font-style: italic;
     font-size: large;
     color:#ffaf00;
-    padding-bottom: 10%;
   }
 
   /* ========== page conférences ========== */
@@ -507,5 +503,9 @@ body {
 
   .conf-item {
     margin-bottom: 5%;
+  }
+
+  .conf-liste {
+    padding-top: 7%;
   }
 }
