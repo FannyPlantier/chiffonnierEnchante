@@ -16,7 +16,7 @@ add_action( 'wp_enqueue_scripts', function() {
         filemtime( get_stylesheet_directory() . '/style.css' ) // version = date de modification
     );
 
-    // charger le fichier JavaScript pour le menu mobile
+    // charger le fichier JavaScript 
     wp_enqueue_script(
         'custom-script',
         get_template_directory_uri() . '/script.js',
@@ -275,18 +275,23 @@ add_action('wp_enqueue_scripts', 'chiffonnier_enqueue_fonts_file');
 /* ================= page mentions légales ================= */
     // insertion image de fond pour la page mentions légales
 add_action('wp_enqueue_scripts', function() {
-if (is_page(491)) {
-    $bg_url = get_stylesheet_directory_uri() . '/assets/images/lignes_verticales.svg';
-    wp_add_inline_style(
-        'child-style',
-        ".page-id-491 { 
-            background-image: url('{$bg_url}'); 
-            background-size: 10rem auto; 
-            background-repeat: repeat-y; 
-            background-position: 10rem 5rem; 
-        }"
-    );
-}
+    if (is_page(491)) {
+        $bg_url = get_stylesheet_directory_uri() . '/assets/images/lignes_verticales.svg';
+        wp_add_inline_style(
+            'child-style',
+            ".page-id-491 { 
+                background-image: url('{$bg_url}'); 
+                background-size: 10rem auto; 
+                background-repeat: repeat-y; 
+                background-position: 103% 1%; 
+            }
+            @media (max-width: 768px) {
+                .page-id-491 {
+                    background-image: none !important;           
+                }
+            }"
+        );
+    }
 });
 
 /* ================= page contact ================= */
