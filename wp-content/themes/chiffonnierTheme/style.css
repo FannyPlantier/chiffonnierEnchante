@@ -9,7 +9,7 @@ body {
   font-family: 'livvic-regular', sans-serif;
 }
 
-/* ================= header global ================= */
+/* ========== header ========== */
 #mon-header {
   background-color: #104b4d;
   color: #fff;
@@ -21,7 +21,7 @@ body {
   z-index: 1001;
 }
 
-/* ================= logo ================= */
+/* ========== logo ========== */
 .desktop-logo {
   display: block;
 }
@@ -37,7 +37,7 @@ body {
   max-width: 36%;
 }
 
-/* ================= navigation desktop ================= */
+/* =========== navigation desktop ========== */
 #primary-nav {
   display: flex;
   flex: 1;
@@ -80,6 +80,7 @@ body {
   padding: 0.5rem 0;
   box-shadow: none;
   z-index: 9999;
+  text-transform: none;
 }
 
 #primary-nav ul li:hover > ul {
@@ -96,10 +97,86 @@ body {
   color: #ffaf00;
 }
 
+/* =========== footer =========== */
+  #mon-footer {
+    text-align: center;
+    font-size: small;
+    background-color: #104b4d;
+    color: whitesmoke;
+    padding: 0.8% 0;
+    margin: 0;
+    line-height: 1.5;
+  }
 
-/* ================= responsive mobile ================= */
+  .mentions-legales {
+    color: whitesmoke;
+    font-size: x-small;
+  }
 
-/* ================= header ================= */
+  .mentions-legales a {
+    color: whitesmoke;
+    text-decoration: none;
+  }
+
+  .chiffonnier-upper {
+    color: #ffaf00;
+    text-transform: uppercase;
+  }
+
+  .enchante-upper {
+    color: #d34a24;
+    text-transform: uppercase;
+  }
+
+  /* =========== général =========== */
+
+  body {
+    margin: 0;
+  }
+
+  h1 {
+    font-size: x-large;
+    color: #992800;
+    text-transform: uppercase;
+    padding: 3% 15% 1% 15%;
+  }
+
+  p {
+    margin: 0;
+    padding: 0% 15%;
+  }
+
+  blockquote {
+    margin: 0;
+  }
+
+  .separateur-titre
+  {
+    display: block;
+    width: 40%;
+    margin: 0 0 4% 15%;
+    border: 1px solid #992800;
+    background: transparent;
+    padding: 0;
+  } 
+
+  /* =========== page accueil =========== */
+  .accueil-texte-3-colonnes {
+    display: flex;
+    justify-content: center;
+    padding: 0 10%;
+   }
+
+   .accueil-citation {
+    font-style: italic;
+    font-size: xx-large;
+    color:#ffaf00;
+    padding: 1% 10% 4% 10%;
+   }
+
+/* ================= RESPONSIVE ================= */
+
+/* =========== header =========== */
 /* cacher le bouton burger sur desktop */
 #menu-toggle {
   display: none;
