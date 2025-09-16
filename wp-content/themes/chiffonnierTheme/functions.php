@@ -322,7 +322,12 @@ if (is_page(71)) {
             background-image: url('{$bg_url}'); 
             background-repeat: repeat-y; 
             background-size: auto 21rem;
-            background-position: calc(100% - 2rem) 5rem;
+            background-position: 95% 10%;
+        }
+        @media (max-width: 768px) {
+            .page-id-71 {
+                background-image: none !important;           
+            }
         }"
     );
 }
