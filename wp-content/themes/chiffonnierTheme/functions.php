@@ -391,6 +391,11 @@ add_action('wp_enqueue_scripts', function() {
                 background-size: auto 10%, auto 10%;
                 background-repeat: no-repeat, no-repeat;
                 background-position: left top 7rem, right bottom 2.9rem;
+                }
+            @media (max-width: 768px) {
+                .page-id-69 {
+                    background-image: none !important;
+                }
             }"
         );
     }
