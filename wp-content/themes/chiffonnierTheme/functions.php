@@ -388,7 +388,7 @@ add_action('wp_enqueue_scripts', function() {
             'child-style',
             ".page-id-69 { 
                 background-image: url('{$bg_top}'), url('{$bg_bottom}');
-                background-size: auto 20rem, auto 20rem;
+                background-size: auto 10%, auto 10%;
                 background-repeat: no-repeat, no-repeat;
                 background-position: left top 7rem, right bottom 2.9rem;
             }"

@@ -156,14 +156,14 @@ body {
   h3 {
     font-size: large;
     color: #d34a24;
-    padding: 0 17%;
+    padding: 0 15%;
   }
 
   p {
     margin: 0;
     padding: 0 15% 2% 15%;
     font-size: large;
-    line-height: 1.6;
+    line-height: 1.7;
   }
 
   blockquote {
@@ -239,6 +239,30 @@ body {
 
 .conf-item.open .conf-chevron i {
   transform: rotate(90deg);
+}
+
+/* ========== page troc ========== */
+.troc-photos {
+  padding: 2% 15%;
+  gap: 5%;
+}
+
+.troc-citation {
+  font-style: italic;
+  font-size: x-large;
+  color:#54ae9b;
+}
+
+.troc-photo-texte {
+  padding: 0 15% 3% 15%;
+}
+
+.troc-photo-texte img{
+	border-radius: 5%;
+}
+
+.troc-photo-texte p {
+  padding-left: 2% !important;
 }
 
 
@@ -460,7 +484,7 @@ body {
   h3 {
     font-size: medium;
     color: #d34a24;
-    padding: 2% 10% 0 10%;
+    padding: 0% 10%;
   }
 
   p {
