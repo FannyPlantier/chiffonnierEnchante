@@ -148,7 +148,7 @@ body {
 
 h1 {
   font-size: x-large;
-  color: #d34a24;
+  color: #992800;
   text-transform: uppercase;
   padding: 3% 15% 1% 15%;
 }
@@ -161,7 +161,7 @@ h2 {
 
 h3 {
   font-size: large;
-  color: #992800;
+  color: #d34a24;
   padding: 0 15%;
 }
 
@@ -210,14 +210,14 @@ blockquote {
 display: flex;
 justify-content: center;
 background-color: #ffaf00;
-color: #104b4d ;
+color: #104b4d;
 margin-bottom: 5%;
 font-weight: bold;
 }
 
 .bouton a:hover{
-background-color: #d34a24 ;
-color: #ffaf00 ;
+background-color: #d34a24;
+color: #ffaf00;
 }
 
 /* =========== page accueil =========== */
@@ -287,6 +287,26 @@ color: #ffaf00 ;
 
 .tissage-photo-d-liste2 {
   padding: 1% 14% 1% 13%;
+}
+
+.tissage-2-colonnes {
+  gap: 7%;
+  line-height: 1.7; 
+  padding: 0 15%;
+}
+
+.tissage-2-colonnes p {
+border :#ffaf00 solid 0.8rem;
+padding: 2rem;
+border-radius: 1rem;
+font-size: larger;
+}
+
+.tissage-precision {
+  font-size: x-large;
+  font-weight: bold;
+  color: #d34a24;
+  padding: 2% 15% 3% 15%;
 }
 
 /* =========== page conférences =========== */
@@ -381,7 +401,7 @@ color: #ffaf00 ;
 .troc-appel-a-orga {
   font-size: x-large;
   font-weight: bold;
-  color: #54ae9b;
+  color: #d34a24;
   padding: 0 15% 3% 15%;
 }
 
