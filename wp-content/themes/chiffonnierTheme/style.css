@@ -180,6 +180,20 @@ body {
     padding: 0;
   } 
 
+  .bouton a{
+  display: flex;
+  justify-content: center;
+  background-color: #ffaf00;
+  color: #104b4d ;
+  margin-bottom: 5%;
+  font-weight: bold;
+}
+
+.bouton a:hover{
+  background-color: #d34a24 ;
+  color: #ffaf00 ;
+}
+
   /* =========== page accueil =========== */
   .accueil-texte-3-colonnes {
     display: flex;
@@ -196,6 +210,11 @@ body {
 
 
 /* =========== page conférences =========== */
+.conf-liste {
+  padding-top: 2%;
+  padding-bottom: 3%
+}
+
 .conf-en-tete {
   display: flex;
   padding-top: 2%
@@ -241,6 +260,18 @@ body {
   transform: rotate(90deg);
 }
 
+.conf-tarif {
+  font-weight: bold;
+  font-style: italic;
+  color: #d34a24;
+}
+
+.conf-bouton {
+  display: inline;
+  padding : 1% 15% 0 15%;
+  justify-content: center;
+}
+
 /* ========== page troc ========== */
 .troc-photos {
   padding: 2% 15%;
@@ -264,21 +295,6 @@ body {
 .troc-photo-texte p {
   padding-left: 2% !important;
   line-height: 1.5 !important;
-}
-
-
-.troc-bouton a{
-  display: flex;
-  justify-content: center;
-  background-color: #ffaf00;
-  color: #104b4d ;
-  margin-bottom: 5%;
-  font-weight: bold;
-}
-
-.troc-bouton a:hover{
-  background-color: #d34a24 ;
-  color: #ffaf00 ;
 }
 
 .troc-precision, 
@@ -529,6 +545,10 @@ body {
     padding: 0;
   }
 
+   .bouton a{
+    margin-top: 4%;
+  }
+
   /* ========== page accueil ========== */
 
   .accueil-h1 {
@@ -550,6 +570,12 @@ body {
   }
 
   /* ========== page conférences ========== */
+  .conf-liste {
+  padding-bottom: 0 !important;
+}
+
+
+
   .conf-chevron {
     padding-left: 10%;
   }
@@ -595,11 +621,6 @@ body {
   padding: 5% 10%;
   line-height: 1.5;
   }
-
-  .troc-bouton a{
-    margin-top: 4%;
-  }
-
   
   /* ========== page en construction ========== */
   .construction-illustration {
