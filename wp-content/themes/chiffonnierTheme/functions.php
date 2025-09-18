@@ -360,9 +360,9 @@ add_action('wp_enqueue_scripts', function() {
     add_action('wp_enqueue_scripts', function() {
     $puce_url = get_stylesheet_directory_uri() . '/assets/images/puce.svg';
     $css = "
-        .scolaire-photo-g-liste ul li::before,
-        .scolaire-photo-d-liste ul li::before,
-        .scolaire-photo-d-liste2 ul li::before {
+        .tissage-photo-g-liste ul li::before,
+        .tissage-photo-d-liste ul li::before,
+        .tissage-photo-d-liste2 ul li::before {
             content: '';
             display: inline-block;
             width: 1rem;
@@ -373,9 +373,9 @@ add_action('wp_enqueue_scripts', function() {
             background-repeat: no-repeat;
             vertical-align: middle;
         }
-        .scolaire-photo-g-liste ul,
-        .scolaire-photo-d-liste ul,
-        .scolaire-photo-d-liste2 ul {
+        .tissage-photo-g-liste ul,
+        .tissage-photo-d-liste ul,
+        .tissage-photo-d-liste2 ul {
             list-style: none; /* on enlève les puces par défaut */
             padding-left: 0;
         }

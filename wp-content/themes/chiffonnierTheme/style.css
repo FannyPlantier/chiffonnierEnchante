@@ -1,3 +1,9 @@
+/*
+Theme Name: Chiffonnier
+Template : twentytwentyfive
+Author: Fanny Plantier
+*/
+
 :root {
   --gutter: 2%;
   --nav-gap: 3%;
@@ -98,116 +104,190 @@ body {
 }
 
 /* =========== footer =========== */
-  #mon-footer {
-    text-align: center;
-    font-size: small;
-    background-color: #104b4d;
-    color: whitesmoke;
-    padding: 0.8% 0;
-    margin-top: 4%;
-    line-height: 1.5;
+#mon-footer {
+  text-align: center;
+  font-size: small;
+  background-color: #104b4d;
+  color: whitesmoke;
+  padding: 0.8% 0;
+  margin-top: 4%;
+  line-height: 1.5;
 
-  }
+}
 
-  .mentions-legales {
-    color: whitesmoke;
-    font-size: x-small;
-  }
+.mentions-legales {
+  color: whitesmoke;
+  font-size: x-small;
+}
 
-  .mentions-legales a {
-    color: whitesmoke;
-    text-decoration: none;
-  }
+.mentions-legales a {
+  color: whitesmoke;
+  text-decoration: none;
+}
 
-  .mentions-legales a:hover {
-    text-decoration: underline;
-    color: #54ae9b;
-  }
+.mentions-legales a:hover {
+  text-decoration: underline;
+  color: #54ae9b;
+}
 
-  .chiffonnier-upper {
-    color: #ffaf00;
-    text-transform: uppercase;
-  }
+.chiffonnier-upper {
+  color: #ffaf00;
+  text-transform: uppercase;
+}
 
-  .enchante-upper {
-    color: #d34a24;
-    text-transform: uppercase;
-  }
+.enchante-upper {
+  color: #d34a24;
+  text-transform: uppercase;
+}
 
-  /* =========== général =========== */
+/* =========== général =========== */
 
-  body {
-    margin: 0;
-  }
+body {
+  margin: 0;
+}
 
-  h1 {
-    font-size: x-large;
-    color: #992800;
-    text-transform: uppercase;
-    padding: 3% 15% 1% 15%;
-  }
+h1 {
+  font-size: x-large;
+  color: #d34a24;
+  text-transform: uppercase;
+  padding: 3% 15% 1% 15%;
+}
 
-  h2 {
-    font-size: x-large;
-    color: #ffaf00  ;
-    padding: 3% 15% 1% 15%;
-  }
+h2 {
+  font-size: x-large;
+  color: #3c7f72;
+  padding: 3% 15% 1% 15%;
+}
 
-  h3 {
-    font-size: large;
-    color: #d34a24;
-    padding: 0 15%;
-  }
+h3 {
+  font-size: large;
+  color: #992800;
+  padding: 0 15%;
+}
 
-  p {
-    margin: 0;
-    padding: 0 15% 2% 15%;
-    font-size: large;
-    line-height: 1.7;
-  }
+h4 {
+  font-size: large;
+  color: #ffaf00;
+  padding: 0 15%;
+  text-transform: uppercase;
+}
 
-  blockquote {
-    margin: 0;
-  }
+h5 {
+  font-size: medium;
+  color: #ffaf00;
+  padding: 0 15%;
+  text-transform: uppercase;
+}
 
-  .separateur-titre
-  {
-    display: block;
-    width: 40%;
-    margin: 0 0 4% 15%;
-    border: 1px solid #992800;
-    background: transparent;
-    padding: 0;
-  } 
 
-  .bouton a{
-  display: flex;
-  justify-content: center;
-  background-color: #ffaf00;
-  color: #104b4d ;
-  margin-bottom: 5%;
-  font-weight: bold;
+p {
+  margin: 0;
+  padding: 0 15% 2% 15%;
+  font-size: large;
+  line-height: 1.7;
+}
+
+blockquote {
+  margin: 0;
+}
+
+.separateur-titre
+{
+  display: block;
+  width: 40%;
+  margin: 0 0 4% 15%;
+  border: 1px solid #992800;
+  background: transparent;
+  padding: 0;
+} 
+
+.separateur-hr{
+  width: 40%;
+  margin: 2% auto 3% auto; 
+}
+
+.bouton a{
+display: flex;
+justify-content: center;
+background-color: #ffaf00;
+color: #104b4d ;
+margin-bottom: 5%;
+font-weight: bold;
 }
 
 .bouton a:hover{
-  background-color: #d34a24 ;
-  color: #ffaf00 ;
+background-color: #d34a24 ;
+color: #ffaf00 ;
 }
 
-  /* =========== page accueil =========== */
-  .accueil-texte-3-colonnes {
-    display: flex;
-    justify-content: center;
-    padding: 0 10%;
-   }
+/* =========== page accueil =========== */
+.accueil-texte-3-colonnes {
+  display: flex;
+  justify-content: center;
+  padding: 0 10%;
+  }
 
-   .accueil-citation {
-    font-style: italic;
-    font-size: xx-large;
-    color:#ffaf00;
-    padding: 4% 10% 0;
-   }
+  .accueil-citation {
+  font-style: italic;
+  font-size: xx-large;
+  color:#ffaf00;
+  padding: 4% 10% 0;
+  }
 
+/* =========== page ateliers tissage =========== */
+.page-id-63 p a {
+ text-decoration: underline;
+ color: #ffaf00;
+ font-style: italic;
+}
+
+.page-id-63 p a:hover {
+ color: #54ae9b;
+}
+
+.tissage-photo-haut-page {
+  padding: 0 15% 5% 15%; 
+  margin: 0 auto; 
+}
+
+.tissage-3-colonnes{
+  padding: 2% 15% 1% 15%;
+  column-gap: 3%;
+}
+
+.tissage-1-colonne {
+  padding: 2%;
+  line-height: 1.2;
+  border-top-right-radius: 20%;
+  border-bottom-left-radius: 20%;
+}
+
+.tissage-1-colonne ul {
+  margin: 0;
+  padding: 1% 2% 6% 4%;
+}
+
+.tissage-1-colonne li{
+  margin: 3%;
+}
+
+.tissage-photo-g-liste {
+  padding: 1% 13% 0 15%;
+}
+
+.tissage-photo-d-liste {
+  padding: 1% 15% 1% 12%;
+}
+
+.tissage-photo-g-liste li, .tissage-photo-d-liste li, .tissage-photo-d-liste2 li {
+  line-height: 1.3;
+  padding: 1rem 0 1rem 0;
+  font-size: large;
+}
+
+.tissage-photo-d-liste2 {
+  padding: 1% 14% 1% 13%;
+}
 
 /* =========== page conférences =========== */
 .conf-liste {
