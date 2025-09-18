@@ -306,6 +306,11 @@ if (is_page(73)) {
             background-size: 35rem auto; 
             background-repeat: no-repeat; 
             background-position: calc(100% - 2rem) 15rem;
+            }
+            @media (max-width: 768px) {
+            .page-id-73 {
+                background-image: none !important;           
+            }
         }"
     );
 }
