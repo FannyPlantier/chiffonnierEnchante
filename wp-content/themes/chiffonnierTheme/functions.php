@@ -16,7 +16,7 @@ add_action( 'wp_enqueue_scripts', function() {
         filemtime( get_stylesheet_directory() . '/style.css' ) // version = date de modification
     );
 
-    // charger le fichier JavaScript pour le menu mobile
+    // charger le fichier JavaScript 
     wp_enqueue_script(
         'custom-script',
         get_template_directory_uri() . '/script.js',
@@ -275,18 +275,23 @@ add_action('wp_enqueue_scripts', 'chiffonnier_enqueue_fonts_file');
 /* ================= page mentions légales ================= */
     // insertion image de fond pour la page mentions légales
 add_action('wp_enqueue_scripts', function() {
-if (is_page(491)) {
-    $bg_url = get_stylesheet_directory_uri() . '/assets/images/lignes_verticales.svg';
-    wp_add_inline_style(
-        'child-style',
-        ".page-id-491 { 
-            background-image: url('{$bg_url}'); 
-            background-size: 10rem auto; 
-            background-repeat: repeat-y; 
-            background-position: 10rem 5rem; 
-        }"
-    );
-}
+    if (is_page(491)) {
+        $bg_url = get_stylesheet_directory_uri() . '/assets/images/lignes_verticales.svg';
+        wp_add_inline_style(
+            'child-style',
+            ".page-id-491 { 
+                background-image: url('{$bg_url}'); 
+                background-size: 10rem auto; 
+                background-repeat: repeat-y; 
+                background-position: 103% 1%; 
+            }
+            @media (max-width: 768px) {
+                .page-id-491 {
+                    background-image: none !important;           
+                }
+            }"
+        );
+    }
 });
 
 /* ================= page contact ================= */
@@ -301,6 +306,11 @@ if (is_page(73)) {
             background-size: 35rem auto; 
             background-repeat: no-repeat; 
             background-position: calc(100% - 2rem) 15rem;
+            }
+            @media (max-width: 768px) {
+            .page-id-73 {
+                background-image: none !important;           
+            }
         }"
     );
 }
@@ -317,7 +327,12 @@ if (is_page(71)) {
             background-image: url('{$bg_url}'); 
             background-repeat: repeat-y; 
             background-size: auto 21rem;
-            background-position: calc(100% - 2rem) 5rem;
+            background-position: 95% 10%;
+        }
+        @media (max-width: 768px) {
+            .page-id-71 {
+                background-image: none !important;           
+            }
         }"
     );
 }
@@ -336,6 +351,11 @@ add_action('wp_enqueue_scripts', function() {
                 background-size: 15rem auto, 12rem auto;
                 background-repeat: no-repeat, no-repeat;
                 background-position: right top 7rem, left bottom 2.9rem;
+                }
+            @media (max-width: 768px) {
+                .page-id-63 {
+                    background-image: none !important;           
+                }
             }"
         );
     }
@@ -345,9 +365,9 @@ add_action('wp_enqueue_scripts', function() {
     add_action('wp_enqueue_scripts', function() {
     $puce_url = get_stylesheet_directory_uri() . '/assets/images/puce.svg';
     $css = "
-        .scolaire-photo-g-liste ul li::before,
-        .scolaire-photo-d-liste ul li::before,
-        .scolaire-photo-d-liste2 ul li::before {
+        .tissage-photo-g-liste ul li::before,
+        .tissage-photo-d-liste ul li::before,
+        .tissage-photo-d-liste2 ul li::before {
             content: '';
             display: inline-block;
             width: 1rem;
@@ -358,9 +378,9 @@ add_action('wp_enqueue_scripts', function() {
             background-repeat: no-repeat;
             vertical-align: middle;
         }
-        .scolaire-photo-g-liste ul,
-        .scolaire-photo-d-liste ul,
-        .scolaire-photo-d-liste2 ul {
+        .tissage-photo-g-liste ul,
+        .tissage-photo-d-liste ul,
+        .tissage-photo-d-liste2 ul {
             list-style: none; /* on enlève les puces par défaut */
             padding-left: 0;
         }
@@ -378,9 +398,14 @@ add_action('wp_enqueue_scripts', function() {
             'child-style',
             ".page-id-69 { 
                 background-image: url('{$bg_top}'), url('{$bg_bottom}');
-                background-size: auto 20rem, auto 20rem;
+                background-size: auto 10%, auto 10%;
                 background-repeat: no-repeat, no-repeat;
                 background-position: left top 7rem, right bottom 2.9rem;
+                }
+            @media (max-width: 768px) {
+                .page-id-69 {
+                    background-image: none !important;
+                }
             }"
         );
     }
