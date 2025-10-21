@@ -321,7 +321,8 @@ export default {
 		navigationOptions() {
 			const baseOptions = [
 				{ value: false, label: this.__('Hidden', 'ml-slider') },
-				{ value: true, label: this.__('Dots', 'ml-slider') }
+				{ value: true, label: this.__('Dots', 'ml-slider') },
+				{ value: 'dots_onhover', label: this.__('Dots - Visible On Hover', 'ml-slider') }
 			];
 
 			return [
@@ -332,8 +333,18 @@ export default {
 					disabled: !this.isPro() 
 				},
 				{ 
+					value: 'thumbs_onhover', 
+					label: this.isPro() ? this.__('Thumbnails - Visible On Hover', 'ml-slider') : this.__('Thumbnails - Visible On Hover (Pro)', 'ml-slider'), 
+					disabled: !this.isPro() 
+				},
+				{ 
 					value: 'filmstrip', 
 					label: this.isPro() ? this.__('Filmstrip', 'ml-slider') : this.__('Filmstrip (Pro)', 'ml-slider'),  
+					disabled: !this.isPro() 
+				},
+				{ 
+					value: 'filmstrip_onhover', 
+					label: this.isPro() ? this.__('Filmstrip - Visible On Hover', 'ml-slider') : this.__('Filmstrip - Visible On Hover (Pro)', 'ml-slider'),  
 					disabled: !this.isPro() 
 				}
 			];

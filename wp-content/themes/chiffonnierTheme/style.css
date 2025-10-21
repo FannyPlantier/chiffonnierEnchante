@@ -669,6 +669,15 @@ font-size: larger;
 
   /* ========== page accueil ========== */
 
+  #metaslider-id-151 {
+    padding-top: 8%;
+  }
+
+  .flex-control-nav,
+  .flex-direction-nav {
+    display:none;
+  }
+
   .accueil-h1 {
       margin-top: 0 !important;
   }
