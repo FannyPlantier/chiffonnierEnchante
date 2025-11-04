@@ -36,16 +36,20 @@ function ha_get_access_token() {
 
     // 2. Le jeton n'est pas dans le cache ou a expiré, on le regénère
     $body = array(
-        'grant_type'    => 'client_credentials',
-        'client_id'     => HA_CLIENT_ID, 
-        'client_secret' => HA_CLIENT_SECRET, 
+        'grant_type'=> 'client_credentials',
     );
 
+    // Création de l'en-tête Basic Auth (Client ID:Client Secret encodé en Base64)
+    $auth_string = base64_encode( HA_CLIENT_ID . ':' . HA_CLIENT_SECRET );
+
     $response = wp_remote_post( HA_TOKEN_URL, array(
-        'method'    => 'POST',
-        'headers'   => array( 'Content-Type' => 'application/x-www-form-urlencoded' ),
-        'body'      => $body,
-        'timeout'   => 15,
+        'method'=> 'POST',
+        'headers'=> array( 
+            'Content-Type'=> 'application/x-www-form-urlencoded',
+            'Authorization'=> 'Basic ' . $auth_string,
+        ),
+        'body'=> 'grant_type=client_credentials', 
+        'timeout'=> 15,
     ));
 
     // 3. Vérification de la réponse
@@ -145,17 +149,17 @@ function ha_get_events_from_api() {
  * @return string Le code HTML à afficher.
  */
 function ha_display_agenda_shortcode() {
-    
+
 // --- TEMPORAIRE POUR DEBUG ---
 $token_check = ha_get_access_token();
-if ( !$token_check ) {
+/**if ( !$token_check ) {
     return '<p style="color:red;">ERREUR DEBUG: Impossible d\'obtenir le jeton d\'accès. Vérifiez HA_CLIENT_ID/HA_CLIENT_SECRET.</p>';
 } else {
     // Optionnel : Affiche la première partie du jeton pour confirmer qu'il est là
     // return '<p style="color:green;">DEBUG: Token OK. Début : ' . substr($token_check, 0, 10) . '...</p>';
 }
 // --- FIN TEMPORAIRE POUR DEBUG ---
-
+**/
     $events = ha_get_events_from_api();
 
     if ( empty( $events ) ) {
