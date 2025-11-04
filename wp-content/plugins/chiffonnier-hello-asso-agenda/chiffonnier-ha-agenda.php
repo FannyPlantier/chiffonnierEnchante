@@ -145,6 +145,17 @@ function ha_get_events_from_api() {
  * @return string Le code HTML à afficher.
  */
 function ha_display_agenda_shortcode() {
+    
+// --- TEMPORAIRE POUR DEBUG ---
+$token_check = ha_get_access_token();
+if ( !$token_check ) {
+    return '<p style="color:red;">ERREUR DEBUG: Impossible d\'obtenir le jeton d\'accès. Vérifiez HA_CLIENT_ID/HA_CLIENT_SECRET.</p>';
+} else {
+    // Optionnel : Affiche la première partie du jeton pour confirmer qu'il est là
+    // return '<p style="color:green;">DEBUG: Token OK. Début : ' . substr($token_check, 0, 10) . '...</p>';
+}
+// --- FIN TEMPORAIRE POUR DEBUG ---
+
     $events = ha_get_events_from_api();
 
     if ( empty( $events ) ) {
