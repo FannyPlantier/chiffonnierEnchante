@@ -172,8 +172,17 @@ class MetaSlider_Admin_Pages extends MetaSliderPlugin
             'hide_on_tablet'  => esc_html__('Hide on Tablet', 'ml-slider'),
             'hide_on_laptop'  => esc_html__('Hide on Laptop', 'ml-slider'),
             'hide_on_desktop' => esc_html__('Hide on Desktop', 'ml-slider'),
+            'add_button' => esc_html__('Add Button', 'ml-slider'),
+            'close' => esc_html__('Close', 'ml-slider'),
+            'insert' => esc_html__('Insert', 'ml-slider'),
+            'url' => esc_html__('URL', 'ml-slider'),
+            'enter_url' => esc_html__('Please enter a valid URL.', 'ml-slider'),
+            'enter_text' => esc_html__('Please enter link text for the button.', 'ml-slider'),
+            'open_new_window' => esc_html__('Open in new window', 'ml-slider'),
+            'button_color' => esc_html__('Button Color', 'ml-slider'),
+            'text_color' => esc_html__('Text Color', 'ml-slider'),
+            'link_text' => esc_html__('Link Text', 'ml-slider'),
             'mobile_settings' => !isset($global_settings['mobileSettings']) || (isset($global_settings['mobileSettings']) && $global_settings['mobileSettings'] === true)
-
         ));
         wp_enqueue_script('metaslider-admin-script');
         do_action('metaslider_register_admin_scripts');

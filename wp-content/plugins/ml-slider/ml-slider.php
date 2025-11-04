@@ -5,7 +5,7 @@
  * Plugin Name: MetaSlider
  * Plugin URI:  https://www.metaslider.com
  * Description: MetaSlider gives you the power to create a beautiful slideshow, carousel, or gallery on your WordPress site.
- * Version:     3.101.0
+ * Version:     3.102.0
  * Author:      MetaSlider
  * Author URI:  https://www.metaslider.com
  * License:     GPL-2.0+
@@ -44,7 +44,7 @@ if (! class_exists('MetaSliderPlugin')) {
          *
          * @var string
          */
-        public $version = '3.101.0';
+        public $version = '3.102.0';
 
         /**
          * Pro installed version number
@@ -151,12 +151,6 @@ if (! class_exists('MetaSliderPlugin')) {
                 $this->gutenberg = new MetaSlider_Gutenberg($this);
             }
 
-            $capability = apply_filters('metaslider_capability', self::DEFAULT_CAPABILITY_EDIT_SLIDES);
-            if (is_admin() && current_user_can($capability)) {
-                $analytics = new MetaSlider_Analytics();
-                $analytics->load();
-            }
-
             // require_once(METASLIDER_PATH . 'admin/lib/temporary.php');
         }
 
@@ -218,8 +212,7 @@ if (! class_exists('MetaSliderPlugin')) {
                 'metaslider_slide' => METASLIDER_PATH . 'admin/Slideshows/slides/Slide.php',
                 'metaslider_themes' => METASLIDER_PATH . 'admin/Slideshows/Themes.php',
                 'metaslider_image' => METASLIDER_PATH . 'admin/Slideshows/Image.php',
-                'metaslider_gutenberg' => METASLIDER_PATH . 'admin/Gutenberg.php',
-                'metaslider_analytics' => METASLIDER_PATH . 'admin/support/Analytics.php'
+                'metaslider_gutenberg' => METASLIDER_PATH . 'admin/Gutenberg.php'
             );
         }
 
@@ -342,6 +335,7 @@ if (! class_exists('MetaSliderPlugin')) {
             add_action('media_upload_custom_html', array($this, 'upgrade_to_pro_tab_custom_html'));
             add_action('media_upload_tiktok', array($this, 'upgrade_to_pro_tab_tiktok'));
             add_action('media_upload_post_images', array($this, 'upgrade_to_pro_tab_post_images'));
+            add_action('media_upload_woocommerce', array($this, 'upgrade_to_pro_tab_woocommerce'));
 
             // TODO: Refactor to Slide class object
             add_action('wp_ajax_delete_slide', array($this, 'ajax_delete_slide'));
@@ -773,7 +767,7 @@ if (! class_exists('MetaSliderPlugin')) {
          */
         public function custom_media_upload_tab_name($tabs)
         {
-            $metaslider_tabs = array('post_feed', 'layer', 'youtube', 'vimeo', 'external_url', 'local_video', 'external_video', 'custom_html', 'tiktok', 'post_images');
+            $metaslider_tabs = array('post_feed', 'layer', 'youtube', 'vimeo', 'external_url', 'local_video', 'external_video', 'custom_html', 'tiktok', 'post_images', 'woocommerce');
 
             // restrict our tab changes to the MetaSlider plugin page
             if ((isset($_GET['page']) && $_GET['page'] == 'metaslider') || (isset($_GET['tab']) && in_array(
@@ -791,6 +785,7 @@ if (! class_exists('MetaSliderPlugin')) {
                         'external_video' => __("External Video", "ml-slider"),
                         'custom_html' => __("Custom HTML", "ml-slider"),
                         'post_images' => __("Post Images", "ml-slider"),
+                        'woocommerce' => __("WooCommerce", "ml-slider"),
                         'post_feed' => __("Post Feed", "ml-slider"),
                         'layer' => __("Layer Slide", "ml-slider"),
                         'local_video' => __("Local Video", "ml-slider"),
@@ -1258,6 +1253,10 @@ if (! class_exists('MetaSliderPlugin')) {
 
                         case 'custom_html':
                             $msQuickstartPro->set_slideshow_theme( $id, 'blend' );
+                            break;
+
+                        case 'woocommerce':
+                            $msQuickstartPro->set_slideshow_theme( $id, 'zonora' );
                             break;
                     }
 
@@ -1885,11 +1884,7 @@ if (! class_exists('MetaSliderPlugin')) {
                 <?php
                 $slider_settings = get_post_meta($slider_id, 'ml-slider_settings', true);
                 $tour_position = get_option('metaslider_tour_cancelled_on');
-
-                if (! class_exists('MetaSlider_Analytics')) {
-                    require_once(METASLIDER_PATH . 'admin/support/Analytics.php');
-                }
-                $analytics = new MetaSlider_Analytics(); ?>
+                ?>
 
                 <metaslider
                         :id='<?php
@@ -1898,12 +1893,7 @@ if (! class_exists('MetaSliderPlugin')) {
                         echo esc_attr(json_encode($slider_settings)); ?>'
                         tour-status="<?php
                         echo $tour_position ? esc_attr($tour_position) : false ?>"
-                        show-opt-in="<?php
-                        echo esc_attr(
-                            ! $analytics::siteIsOptin() && ! get_user_option(
-                                'metaslider_analytics_onboarding_status'
-                            ) ? 1 : ''
-                        ); ?>"
+                        show-opt-in=""
                         inline-template>
                 <span>
                 <form @submit.prevent="" @keydown.enter.prevent="" autocomplete="off" id="ms-form-settings"
@@ -2541,6 +2531,18 @@ if (! class_exists('MetaSliderPlugin')) {
         }
 
         /**
+         * Return the MetaSlider pro upgrade iFrame for WooCommerce
+         * 
+         * @since 3.102
+         */
+        public function upgrade_to_pro_tab_woocommerce()
+        {
+            if (function_exists('is_plugin_active') && ! is_plugin_active('ml-slider-pro/ml-slider-pro.php')) {
+                return wp_iframe(array($this, 'upgrade_to_pro_iframe_woocommerce'));
+            }
+        }
+
+        /**
          * Media Manager iframe HTML - Post Images
          * 
          * @since 3.101
@@ -2562,6 +2564,41 @@ if (! class_exists('MetaSliderPlugin')) {
                     ) . "</p>",
                     "<p>" . esc_html__(
                         'This slide type supports featured images, post content images, WooCommerce galleries, Advanced Custom Fields images and galleries.',
+                        'ml-slider'
+                    ) . "</p>",
+                    '<a class="probutton button button-primary button-hero" href="' . esc_url(
+                        $link
+                    ) . '" target="_blank">' . esc_html__(
+                        "Find out more about MetaSlider Pro",
+                        "ml-slider"
+                    ) . '<span class="dashicons dashicons-external"></span></a>',
+                    "</div>"
+                )
+            );
+        }
+
+        /**
+         * Media Manager iframe HTML - WooCommerce
+         * 
+         * @since 3.102
+         */
+        public function upgrade_to_pro_iframe_woocommerce()
+        {
+            $link = apply_filters('metaslider_hoplink', 'https://www.metaslider.com/upgrade/');
+            $link .= '?utm_source=lite&amp;utm_medium=more-slide-types-woocommerce&amp;utm_campaign=pro';
+            $this->upgrade_to_pro_iframe(
+                array(
+                    '<div class="left"><img src="' . esc_url(METASLIDER_ADMIN_URL . 'images/upgrade/woocommerce.png') . '" alt="" /></div>',
+                    "<div><h2>" . esc_html__(
+                        'Create slideshows with your WooCommerce products',
+                        'ml-slider'
+                    ) . "</h2>",
+                    "<p>" . esc_html__(
+                        'With WooCommerce slides, you can build slideshows with your WooCommerce products.',
+                        'ml-slider'
+                    ) . "</p>",
+                    "<p>" . esc_html__(
+                        'WooCommerce slides will automatically display your products with images, text, custom fields, and much more.',
                         'ml-slider'
                     ) . "</p>",
                     '<a class="probutton button button-primary button-hero" href="' . esc_url(

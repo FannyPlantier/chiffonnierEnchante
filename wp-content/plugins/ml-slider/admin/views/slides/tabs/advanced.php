@@ -39,3 +39,22 @@ die('No direct access.');
         ?> 
     </label>
 </div>
+<div class="row thumbnail advanced-setting">
+    <div class="ms-switch-button">
+        <label>
+            <input type="checkbox" class="thumbnail-slide mr-0" disabled> <span class="opacity-50"></span>
+        </label>
+    </div>
+    <label class="thumbnail-slide">
+        <?php esc_html_e('Custom thumbnail', 'ml-slider') ?><span class="dashicons dashicons-info tipsy-tooltip-top" original-title="<?php esc_attr_e(
+            'When Navigation is Thumbnails or Filmstrip, select a thumbnail to replace the default one.', 
+            'ml-slider'
+        ) ?>" style="line-height: 1.2em;"></span>
+        <?php 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo metaslider_upgrade_pro_small_btn(
+            __( 'Custom thumbnail is available in MetaSlider Pro', 'ml-slider' )
+        );
+        ?> 
+    </label>
+</div>

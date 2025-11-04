@@ -2,7 +2,7 @@
 Contributors: andergmartins, htmgarcia, publishpress, stevejburge, rochdesigns
 Tags: slider, video slider, image slider, carousel slider, gallery
 Requires at least: 5.0
-Stable tag: 3.101.0
+Stable tag: 3.102.0
 Requires PHP: 7.0
 Tested up to: 6.8
 License: GPLv2 or later
@@ -319,6 +319,16 @@ Yes, you can build Elementor slides and Beaver Builder slideshows. You can creat
 
 The format is based on [Keep a Changelog recommendations](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+
+= [3.102.0] - Oct 16, 2025 =
+
+* ADDED: Promo for WooCommerce slide type, #1862;
+* FIXED: Make add button text from TinyMCE translatable, #1875;
+* FIXED: USe the same color picker in TinyMCE, #1873;
+* FIXED: Add aria-label on navigation, #1800;
+* CHANGED: Axios to 1.12.0, #1857;
+* CHANGED: Italian, Spanish and French translation updates, #1865;
+* REMOVED: AppSero, #1869;
 
 = [3.101.0] - Sep 11, 2025 =
 

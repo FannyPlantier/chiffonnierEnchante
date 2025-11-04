@@ -222,10 +222,10 @@
 				name="default-slideshow-width" 
 				wrapper-class="w-24" 
 				@click="saveProSettings()">
-				<template slot="header">{{ __('Maximum Number of Custom Fields in Post Feed Slides', 'ml-slider') }}</template>
+				<template slot="header">{{ __('Maximum Number of Custom Fields in Post Feed and WooCommerce Slides', 'ml-slider') }}</template>
 				<template slot="description">{{ __('Select how many custom fields will display in the dropdown menu when you are inserting tags.', 'ml-slider') }}</template>
 				<template slot="input-label">
-					{{ __('Change the maximum custom fields for Post Feed', 'ml-slider') }}
+					{{ __('Change the maximum custom fields for Post Feed and WooCommerce', 'ml-slider') }}
 				</template>
 			</text-single-input>
 			<switch-single-input v-model="proSettings.legacyThemeEditor" @change="saveProSettings()">

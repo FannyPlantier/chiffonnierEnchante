@@ -407,3 +407,55 @@ function metaslider_upgrade_pro_small_btn($text = '')
         esc_attr( $text ) . '" href="' . 
         esc_url( $link ) . '" target="_blank"></a>';
 }
+
+/**
+ * Get the closest image based on a width size
+ * 
+ * @since 3.102
+ * 
+ * @param int $width            Image width we want to target
+ * @param int $attachment_id    Image ID
+ * 
+ * @return string A valid media image URL or a placeholder URL
+ */
+function metaslider_intermediate_image_src( $width, $attachment_id )
+{
+    $image_sizes = wp_get_attachment_image_src( $attachment_id, 'full' );
+
+    if ( is_array( $image_sizes ) && count( $image_sizes ) ) {
+        $original_width = $image_sizes[1]; // Image width value from array
+        
+        // Find the closest image size to $width in width
+        $sizes = get_intermediate_image_sizes(); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.get_intermediate_image_sizes_get_intermediate_image_sizes
+
+        // Default if no smaller size is found
+        $closest_size = 'full'; 
+
+        foreach ( $sizes as $size ) {
+            $size_info  = image_get_intermediate_size( $attachment_id, $size );
+
+            if ( isset( $size_info['width'] ) 
+                && $size_info['width'] >= $width 
+                && $size_info['width'] < $original_width 
+            ) {
+                $closest_size = $size;
+                break;
+            }
+        }
+
+        // Get the URL of the closest image size.
+        $closest_image = wp_get_attachment_image_src( $attachment_id, $closest_size );
+        
+        // $closest_image[0] URL
+        // $closest_image[1] width
+        // $closest_image[2] height
+        // $closest_image[3] boolean for: is the image cropped?
+
+        if ( is_array( $closest_image ) ) {
+            $image_ = is_ssl() ? set_url_scheme( $closest_image[0], 'https' ) : set_url_scheme( $closest_image[0], 'http' );
+            return $image_;
+        }
+    }
+
+    return METASLIDER_ASSETS_URL . 'metaslider/placeholder-thumb.jpg';
+}

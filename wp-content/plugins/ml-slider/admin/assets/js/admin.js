@@ -747,7 +747,7 @@ window.jQuery(function ($) {
         delete window.metaslider.slide_type
     }
 
-    var add_image_apis = window.metaslider.add_image_apis = function (slide_type, slide_id) {
+    var add_image_apis = window.metaslider.add_image_apis = function (slide_type, slide_id, unsplash = true) {
 
         // This is the pro layer screen (not currently used)
         if ($('.media-menu-item.active:contains("Layer")').length) {
@@ -767,8 +767,10 @@ window.jQuery(function ($) {
 
         // Unsplash - First remove potentially leftover tabs in case the WP close event doesn't fire
         $('.unsplash-tab').remove()
-        $('.media-frame-router .media-router').append('<a href="#" id="unsplash-tab" class="text-black hover:text-blue-dark unsplash-tab media-menu-item">Unsplash Library</a>')
-        $('.toplevel_page_metaslider').on('click', '.unsplash-tab', unsplash_api_events)
+        if (unsplash) {
+            $('.media-frame-router .media-router').append('<a href="#" id="unsplash-tab" class="text-black hover:text-blue-dark unsplash-tab media-menu-item">Unsplash Library</a>')
+            $('.toplevel_page_metaslider').on('click', '.unsplash-tab', unsplash_api_events)
+        }
 
         // Each API will fake the container, so if we click on a native WP container, we should delete the API container
         $('.media-frame-router .media-router .media-menu-item').on('click', function () {

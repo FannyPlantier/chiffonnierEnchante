@@ -1068,6 +1068,58 @@ input[type="radio"] {
     display: inline-block;
     padding: 10px 20px;
 }
+.tox-tinymce-aux .colorpicker {
+    width: 183px !important;
+}
+.tox-tinymce-aux .wp-picker-container {
+    display: flex;
+    flex-direction: column;
+
+    > .wp-color-result {
+        order: 0;
+        width: 32px;
+    }
+    > .wp-picker-input-wrap {
+        order: 2;
+    }
+    > .wp-picker-holder {
+        order: 1;
+    }
+    .wp-color-result.button {
+        margin-bottom: 0;
+    }
+    .wp-picker-input-wrap {
+        display: block;
+        margin-top: 6px;
+
+        input {
+            border: 1px solid;
+        }
+        .screen-reader-text {
+            display: none !important;
+        }
+    }
+    .wp-picker-input-wrap,
+    .wp-picker-holder {
+        z-index: 9999;
+    }
+    .wp-color-result-text, 
+    .wp-picker-clear {
+        display: none;
+    }
+    .wp-picker-holder {
+
+        .iris-picker  {
+            position: relative;
+            min-height: 225px;
+
+            .iris-picker-inner,
+            .iris-palette-container {
+                position: absolute;
+            }
+        }
+    }
+}
 
  /* Spin an svg */
  .ms-spin {

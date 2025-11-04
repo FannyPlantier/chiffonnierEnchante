@@ -876,8 +876,25 @@ class MetaImageSlide extends MetaSlide
                 'style' => "display: none; width: 100%;",
                 'class' => "slide-{$this->slide->ID} ms-image {$mobile_class}",
                 'aria-roledescription' => "slide",
-                'data-date' => $this->slide->post_date
+                'data-date' => $this->slide->post_date,
+                'data-slide-type' => $this->identifier
             ), $slide, $this->slider->ID);
+
+        // @since 3.102 - Repeat slide is enabled from here due can't trigger 
+        // through add_filter('metaslider_flex_slider_list_item_attributes' ...) 
+        // to modify attributes when also using custom thumbnail
+        $is_repeated = class_exists( 'MetaSliderPro' ) && metaslider_option_is_enabled( 
+            get_post_meta( $this->slide->ID, '_meta_slider_slide_is_repeated', true ) 
+        );
+
+        if ( $is_repeated ) {
+            // Check the number of slides
+            $repeat_every = (int) get_post_meta( $this->slide->ID, '_meta_slider_slide_repeat_every', true );
+
+            if ( $repeat_every > 0 ) {
+                $attributes['data-slide-repeat'] = $repeat_every;
+            }
+        }
 
         $li = "<li";
 
