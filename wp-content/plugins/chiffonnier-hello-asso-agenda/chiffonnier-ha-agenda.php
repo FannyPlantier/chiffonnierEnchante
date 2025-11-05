@@ -35,44 +35,46 @@ function ha_get_access_token() {
     }
 
     // 2. Le jeton n'est pas dans le cache ou a expiré, on le regénère
-    $body = array(
-        'grant_type'=> 'client_credentials',
-    );
-
     // Création de l'en-tête Basic Auth (Client ID:Client Secret encodé en Base64)
     $auth_string = base64_encode( HA_CLIENT_ID . ':' . HA_CLIENT_SECRET );
 
+   
     $response = wp_remote_post( HA_TOKEN_URL, array(
-        'method'=> 'POST',
-        'headers'=> array( 
-            'Content-Type'=> 'application/x-www-form-urlencoded',
-            'Authorization'=> 'Basic ' . $auth_string,
+        'headers' => array(
+            'Authorization' => 'Basic ' . $auth_string,
         ),
-        'body'=> 'grant_type=client_credentials', 
-        'timeout'=> 15,
+        'body' => array('grant_type' => 'client_credentials'),
+        'timeout' => 15,
     ));
 
     // 3. Vérification de la réponse
-    if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
-        error_log( 'Erreur de communication API : Échec de la génération du jeton d\'accès.');
+    error_log('HelloAsso token response: ' . print_r($response, true));
+
+    if ( is_wp_error( $response ) ) {
+        error_log('Erreur WP : ' . $response->get_error_message());
         return false;
     }
 
-    $data = json_decode( wp_remote_retrieve_body( $response ), true );
+    $code = wp_remote_retrieve_response_code($response);
+    $body = wp_remote_retrieve_body($response);
+    $data = json_decode($body, true);
 
-    if ( isset( $data['access_token'] ) ) {
+    if ($code !== 200) {
+        error_log("Erreur HelloAsso: HTTP $code. Réponse brute: $body");
+        return false;
+    }
+
+    if (isset($data['access_token'])) {
         $token = $data['access_token'];
-        // Utiliser la durée d'expiration fournie par l'API (avec une petite marge de sécurité)
-        $expires_in = isset( $data['expires_in'] ) ? (int)$data['expires_in'] : HOUR_IN_SECONDS; 
-
-        // 4. Stocker le nouveau jeton en cache (ex: durée - 60 secondes)
-        set_transient( 'helloasso_access_token', $token, $expires_in - 60 ); 
-        
+        $expires_in = isset($data['expires_in']) ? (int)$data['expires_in'] : HOUR_IN_SECONDS;
+        set_transient('helloasso_access_token', $token, $expires_in - 60);
         return $token;
     }
 
+    error_log('Erreur HelloAsso : pas de access_token dans la réponse.');
     return false;
 }
+
 
 
 // -----------------------------------------------------------
