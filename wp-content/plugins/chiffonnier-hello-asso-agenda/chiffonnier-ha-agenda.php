@@ -59,7 +59,8 @@ function ha_get_access_token() {
         'headers'   => $headers,
         'body'      => $body,
         'timeout'   => 15,
-        'redirection' => 5, // Ajout de robustesse pour suivre les redirections
+        'redirection' => 5, 
+        'sslverify' =>false,// Ajout de robustesse pour suivre les redirections
     ]);
 
     if (is_wp_error($response)) {
