@@ -48,7 +48,7 @@ function ha_get_access_token() {
     }
 
     // Appel API HelloAsso
-    $response = wp_remote_post(HA_TOKEN_URL . '/token', [
+    $response = wp_remote_post(HA_TOKEN_URL, [
         'headers' => [
             'Content-Type' => 'application/x-www-form-urlencoded',
         ],
