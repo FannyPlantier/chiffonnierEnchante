@@ -26,6 +26,17 @@ function ha_get_access_token() {
         return $token;
     }
 
+    // --- Authentification Basic requise pour HelloAsso OAuth2 (v5) ---
+    // Encodage de 'client_id:client_secret' en Base64
+    $auth_header = 'Basic ' . base64_encode(HA_CLIENT_ID . ':' . HA_CLIENT_SECRET);
+
+    // En-têtes de la requête, y compris l'Authorization Basic
+    $headers = [
+        'Content-Type' => 'application/x-www-form-urlencoded',
+        'Authorization' => $auth_header, // L'élément clé
+    ];
+
+
     // Vérifie si on dispose d’un refresh_token stocké
     $refresh_token = get_option('helloasso_refresh_token');
     $body = [];
@@ -36,22 +47,20 @@ function ha_get_access_token() {
             'grant_type'    => 'refresh_token',
             'refresh_token' => $refresh_token,
         ];
+        // Le refresh_token n'a pas besoin des identifiants dans le body (déjà dans le header)
         error_log('HelloAsso : tentative de refresh_token');
     } else {
-        // Première génération du token
+        // Première génération du token (client_credentials)
         $body = [
             'grant_type'    => 'client_credentials',
-            'client_id'     => HA_CLIENT_ID,
-            'client_secret' => HA_CLIENT_SECRET,
+            // Le client_id et client_secret sont dans le header (Basic Auth) et ne DOIVENT PAS être dans le body.
         ];
         error_log('HelloAsso : demande initiale de token');
     }
 
     // Appel API HelloAsso
     $response = wp_remote_post(HA_TOKEN_URL, [
-        'headers' => [
-            'Content-Type' => 'application/x-www-form-urlencoded',
-        ],
+        'headers' => $headers, // Utilisation des en-têtes avec Basic Auth
         'body' => $body,
         'timeout' => 15,
     ]);
@@ -65,12 +74,13 @@ function ha_get_access_token() {
     $body = wp_remote_retrieve_body($response);
     $data = json_decode($body, true);
 
+    // Ajout d'un log pour le code si ce n'est pas 200, pour voir si c'est un 401 maintenant.
     if ($code !== 200 || empty($data['access_token'])) {
         error_log("Erreur HelloAsso HTTP $code : " . $body);
         return false;
     }
 
-    // Stocke les tokens
+    // Stocke les tokens... (le reste est OK)
     $access_token  = $data['access_token'];
     $refresh_token = isset($data['refresh_token']) ? $data['refresh_token'] : null;
     $expires_in    = isset($data['expires_in']) ? (int) $data['expires_in'] : 1800; // 30 min par défaut
