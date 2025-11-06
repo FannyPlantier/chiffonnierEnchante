@@ -55,13 +55,13 @@ function ha_get_access_token() {
     }
 
     // Appel API HelloAsso
-    $response = wp_remote_post(HA_TOKEN_URL, [
+    $response = wp_remote_post(HA_TOKEN_URL, array(
         'headers'   => $headers,
         'body'      => $body,
         'timeout'   => 15,
         'redirection' => 5, 
-        'sslverify' =>false,// Ajout de robustesse pour suivre les redirections
-    ]);
+       // 'sslverify' =>false,// Ajout de robustesse pour suivre les redirections
+    ));
 
     if (is_wp_error($response)) {
         error_log('Erreur WP HelloAsso : ' . $response->get_error_message());
