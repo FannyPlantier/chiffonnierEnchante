@@ -14,29 +14,50 @@ if ( ! defined( 'ABSPATH' ) ) {
 // 1. GESTION DE L'AUTHENTIFICATION (ACCESS TOKEN)
 // -----------------------------------------------------------
 function ha_get_access_token() {
+    // Vérifie les constantes requises
     if ( ! defined('HA_CLIENT_ID') || ! defined('HA_CLIENT_SECRET') || ! defined('HA_TOKEN_URL') ) {
-        error_log('Erreur configuration API : HA_CLIENT_ID / HA_CLIENT_SECRET / HA_TOKEN_URL manquants');
+        error_log('Erreur API HelloAsso : constantes manquantes.');
         return false;
     }
 
+    // Vérifie si un access_token valide est déjà en cache
     $token = get_transient('helloasso_access_token');
     if ($token) {
         return $token;
     }
 
-    $auth_string = base64_encode(HA_CLIENT_ID . ':' . HA_CLIENT_SECRET);
+    // Vérifie si on dispose d’un refresh_token stocké
+    $refresh_token = get_option('helloasso_refresh_token');
+    $body = [];
 
-    $response = wp_remote_post(HA_TOKEN_URL, [
+    if ($refresh_token) {
+        // Tentative de rafraîchir le token existant
+        $body = [
+            'grant_type'    => 'refresh_token',
+            'refresh_token' => $refresh_token,
+        ];
+        error_log('HelloAsso : tentative de refresh_token');
+    } else {
+        // Première génération du token
+        $body = [
+            'grant_type'    => 'client_credentials',
+            'client_id'     => HA_CLIENT_ID,
+            'client_secret' => HA_CLIENT_SECRET,
+        ];
+        error_log('HelloAsso : demande initiale de token');
+    }
+
+    // Appel API HelloAsso
+    $response = wp_remote_post(HA_TOKEN_URL . '/token', [
         'headers' => [
-            'Authorization' => 'Basic ' . $auth_string,
             'Content-Type' => 'application/x-www-form-urlencoded',
         ],
-        'body' => ['grant_type' => 'client_credentials'],
+        'body' => $body,
         'timeout' => 15,
     ]);
 
-    if ( is_wp_error($response) ) {
-        error_log('Erreur WP Remote Post: ' . $response->get_error_message());
+    if (is_wp_error($response)) {
+        error_log('Erreur WP HelloAsso : ' . $response->get_error_message());
         return false;
     }
 
@@ -44,21 +65,25 @@ function ha_get_access_token() {
     $body = wp_remote_retrieve_body($response);
     $data = json_decode($body, true);
 
-    error_log('HelloAsso token response: ' . print_r($data, true));
-
-    if ($code !== 200) {
-        error_log("Erreur HelloAsso HTTP $code : $body");
+    if ($code !== 200 || empty($data['access_token'])) {
+        error_log("Erreur HelloAsso HTTP $code : " . $body);
         return false;
     }
 
-    if (isset($data['access_token'])) {
-        $expires_in = isset($data['expires_in']) ? (int)$data['expires_in'] : HOUR_IN_SECONDS;
-        set_transient('helloasso_access_token', $data['access_token'], $expires_in - 60);
-        return $data['access_token'];
+    // Stocke les tokens
+    $access_token  = $data['access_token'];
+    $refresh_token = isset($data['refresh_token']) ? $data['refresh_token'] : null;
+    $expires_in    = isset($data['expires_in']) ? (int) $data['expires_in'] : 1800; // 30 min par défaut
+
+    // Mise en cache du token (expire un peu avant)
+    set_transient('helloasso_access_token', $access_token, $expires_in - 60);
+
+    // Mise à jour du refresh token (persiste plus longtemps)
+    if ($refresh_token) {
+        update_option('helloasso_refresh_token', $refresh_token);
     }
 
-    error_log('Erreur HelloAsso : pas de access_token dans la réponse.');
-    return false;
+    return $access_token;
 }
 
 // -----------------------------------------------------------
