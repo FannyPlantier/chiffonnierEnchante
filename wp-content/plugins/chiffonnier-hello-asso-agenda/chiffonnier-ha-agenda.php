@@ -30,6 +30,7 @@ function ha_get_access_token() {
     $headers = [
         'Content-Type' => 'application/x-www-form-urlencoded',
         'Accept'       => 'application/json', // Ajout de l'Accept pour être explicite
+        'User-Agent'   => 'WordPress HelloAsso Plugin',
     ];
 
     // Vérifie si on dispose d’un refresh_token stocké
