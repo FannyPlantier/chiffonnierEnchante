@@ -28,5 +28,11 @@ function ha_events_init() {
     }
     
     new HelloAsso_API();
+
+        // 💡 DÉBOGAGE TEMPORAIRE
+        if ( current_user_can( 'manage_options' ) && isset( $_GET['ha_debug'] ) ) {
+            add_action( 'admin_init', array( $helloasso_api, 'debug_token_status' ) );
+        }
+        // 💡 FIN DE L'AJOUT TEMPORAIRE
 }
 add_action( 'plugins_loaded', 'ha_events_init' );

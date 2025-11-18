@@ -39,6 +39,37 @@ class HelloAsso_API {
         return false; // Échec total
     }
 
+      /**
+     * **[DEBUG]** Affiche l'état actuel du token et tente d'en obtenir un nouveau.
+     */
+    public function debug_token_status() {
+        echo '<h2>HelloAsso Token Debug</h2>';
+        
+        $token_data = get_option( self::TOKEN_OPTION_KEY, array() );
+        $current_time = time();
+        $token = $this->get_valid_access_token();
+        
+        // Afficher les données stockées
+        echo '<h3>1. Données du Token Stockées (wp_options)</h3>';
+        echo '<pre>' . print_r( $token_data, true ) . '</pre>';
+
+        if ( $token ) {
+            echo '<p style="color: green;">✅ **Access Token Valide Obtenu :** ' . substr($token, 0, 15) . '... (longueur: ' . strlen($token) . ')</p>';
+        } else {
+            echo '<p style="color: red;">❌ **Échec de l\'obtention de l\'Access Token.**</p>';
+            // Tentative d'afficher les logs d'erreurs si l'appel initial a échoué
+            // (Nécessiterait d'ajouter un logging plus poussé dans handle_token_response)
+        }
+        
+        // Vérifier l'expiration (basé sur les données stockées si elles existent)
+        if ( isset( $token_data['expires_at'] ) ) {
+            $expires_in = $token_data['expires_at'] - $current_time;
+            echo '<p>Expiration dans : ' . $expires_in . ' secondes.</p>';
+        } else {
+             echo '<p>Pas d\'information d\'expiration stockée.</p>';
+        }
+    }
+
 
     /**
      * Demande le token initial (Client Credentials Grant Type).
@@ -86,7 +117,6 @@ class HelloAsso_API {
      */
     private function handle_token_response( $response ) {
         if ( is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) !== 200 ) {
-            // Dans un vrai plugin, il faudrait logguer l'erreur (ex: error_log)
             return false;
         }
 
