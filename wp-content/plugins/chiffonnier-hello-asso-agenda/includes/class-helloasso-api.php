@@ -39,37 +39,6 @@ class HelloAsso_API {
         return false; // Échec total
     }
 
-      /**
-     * **[DEBUG]** Affiche l'état actuel du token et tente d'en obtenir un nouveau.
-     */
-    public function debug_token_status() {
-        echo '<h2>HelloAsso Token Debug</h2>';
-        
-        $token_data = get_option( self::TOKEN_OPTION_KEY, array() );
-        $current_time = time();
-        $token = $this->get_valid_access_token();
-        
-        // Afficher les données stockées
-        echo '<h3>1. Données du Token Stockées (wp_options)</h3>';
-        echo '<pre>' . print_r( $token_data, true ) . '</pre>';
-
-        if ( $token ) {
-            echo '<p style="color: green;">✅ **Access Token Valide Obtenu :** ' . substr($token, 0, 15) . '... (longueur: ' . strlen($token) . ')</p>';
-        } else {
-            echo '<p style="color: red;">❌ **Échec de l\'obtention de l\'Access Token.**</p>';
-            // Tentative d'afficher les logs d'erreurs si l'appel initial a échoué
-            // (Nécessiterait d'ajouter un logging plus poussé dans handle_token_response)
-        }
-        
-        // Vérifier l'expiration (basé sur les données stockées si elles existent)
-        if ( isset( $token_data['expires_at'] ) ) {
-            $expires_in = $token_data['expires_at'] - $current_time;
-            echo '<p>Expiration dans : ' . $expires_in . ' secondes.</p>';
-        } else {
-             echo '<p>Pas d\'information d\'expiration stockée.</p>';
-        }
-    }
-
 
     /**
      * Demande le token initial (Client Credentials Grant Type).
@@ -82,8 +51,8 @@ class HelloAsso_API {
             ),
             'body' => array(
                 'grant_type'    => 'client_credentials',
-                'client_id'     => HA_CLIENT_ID, // Utilisation de la constante wp-config.php
-                'client_secret' => HA_CLIENT_SECRET, // Utilisation de la constante wp-config.php
+                'client_id'     => HA_CLIENT_ID, 
+                'client_secret' => HA_CLIENT_SECRET,
             ),
         ) );
 
@@ -103,7 +72,6 @@ class HelloAsso_API {
             'body' => array(
                 'grant_type'    => 'refresh_token',
                 'refresh_token' => $refresh_token,
-                // Note : Pour refresh_token, client_id et client_secret ne sont pas requis dans le body.
             ),
         ) );
 
@@ -117,6 +85,7 @@ class HelloAsso_API {
      */
     private function handle_token_response( $response ) {
         if ( is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) !== 200 ) {
+            // Optionnel: logguer l'erreur avec error_log($response)
             return false;
         }
 
@@ -180,7 +149,7 @@ class HelloAsso_API {
     public function display_events_shortcode( $atts ) {
         $events = $this->get_public_events();
 
-        if ( empty( $events ) ) {
+        if ( empty( $events ) || $events === false ) {
             return '<p>Aucun événement public trouvé actuellement.</p>';
         }
 
@@ -193,7 +162,7 @@ class HelloAsso_API {
                 $description = esc_html( $event['description'] );
                 $widget_url = esc_url( $event['widgetFullUrl'] ); 
             ?>
-                <div class="helloasso-event-item">
+                <div class="helloasso-event-item" style="border: 1px solid #eee; padding: 15px; margin-bottom: 20px;">
                     <h2><?php echo $title; ?></h2>
                     <p class="description"><?php echo $description; ?></p>
                     
@@ -208,15 +177,113 @@ class HelloAsso_API {
                             </iframe>
                         </div>
                     <?php endif; ?>
-
-                    <!-- Alternative : Lien direct vers HelloAsso -->
-                    <p><a href="<?php echo esc_url( $event['url'] ); ?>" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; margin-top: 10px;">Voir sur HelloAsso</a></p>
                 </div>
-                <hr>
             <?php endforeach; ?>
         </div>
         <?php
 
         return ob_get_clean(); // Retourne le contenu capturé
+    }
+    
+    // ====================================================================================
+    // |                                  MÉTHODES DE DÉBOGAGE (DEBUG)                    |
+    // ====================================================================================
+
+    /**
+     * **[DEBUG]** Affiche l'état actuel du token et tente d'en obtenir un nouveau.
+     */
+    public function debug_token_status() {
+        echo '<h2>HelloAsso Token Debug</h2>';
+        
+        $token_data = get_option( self::TOKEN_OPTION_KEY, array() );
+        $current_time = time();
+        $token = $this->get_valid_access_token();
+        
+        // Afficher les données stockées
+        echo '<h3>1. Données du Token Stockées (wp_options)</h3>';
+        echo '<pre>' . print_r( $token_data, true ) . '</pre>';
+
+        if ( $token ) {
+            echo '<p style="color: green;">✅ **Access Token Valide Obtenu :** ' . substr($token, 0, 15) . '... (longueur: ' . strlen($token) . ')</p>';
+        } else {
+            echo '<p style="color: red;">❌ **Échec de l\'obtention de l\'Access Token.**</p>';
+        }
+        
+        // Vérifier l'expiration (basé sur les données stockées si elles existent)
+        if ( isset( $token_data['expires_at'] ) ) {
+            $expires_in = $token_data['expires_at'] - $current_time;
+            echo '<p>Expiration dans : ' . $expires_in . ' secondes.</p>';
+        } else {
+             echo '<p>Pas d\'information d\'expiration stockée.</p>';
+        }
+    }
+
+    /**
+     * **[DEBUG]** Affiche la réponse brute de l'API des événements.
+     */
+    public function debug_event_request() {
+        echo '<h2>HelloAsso Events Request Debug</h2>';
+
+        $token = $this->get_valid_access_token();
+
+        if ( ! $token ) {
+            echo '<p style="color: red;">❌ **Impossible de tester : Token d\'accès manquant ou invalide.** Veuillez essayer <a href="' . admin_url('index.php?ha_debug_token=true') . '">debug_token_status</a> d\'abord.</p>';
+            return;
+        }
+
+        $url = self::API_URL . '/v5/organizations/' . HA_ORGANIZATION_SLUG . '/forms';
+        
+        $args = array(
+            'states'    => 'Public', 
+            'formTypes' => 'Event', 
+        );
+        
+        $query_url = add_query_arg( $args, $url );
+        
+        echo '<h3>URL Requête API :</h3>';
+        echo '<p>' . esc_url( $query_url ) . '</p>';
+        echo '<h3>Headers d\'Authentification :</h3>';
+        echo '<pre>Authorization: Bearer ' . substr($token, 0, 15) . '...</pre>';
+
+        $response = wp_remote_get( $query_url, array(
+            'headers' => array(
+                'Authorization' => 'Bearer ' . $token,
+                'Content-Type'  => 'application/json',
+            ),
+        ) );
+
+        echo '<h3>Réponse Brute (wp_remote_get) :</h3>';
+        echo '<pre>' . print_r( $response, true ) . '</pre>';
+        
+        if ( is_wp_error( $response ) ) {
+            echo '<p style="color: red;">❌ **Erreur WP :** ' . $response->get_error_message() . '</p>';
+            return;
+        }
+        
+        $code = wp_remote_retrieve_response_code( $response );
+        $body = wp_remote_retrieve_body( $response );
+        $data = json_decode( $body, true );
+
+        echo '<h3>Code de Réponse HTTP :</h3>';
+        echo ($code === 200 ? '<p style="color: green;">' : '<p style="color: red;">') . $code . '</p>';
+
+        if ($code === 200) {
+            echo '<h3>Résultats (Propriété data) :</h3>';
+            if ( isset( $data['data'] ) && ! empty( $data['data'] ) ) {
+                echo '<p style="color: green;">✅ **' . count($data['data']) . ' événements trouvés !**</p>';
+                echo '<pre>' . print_r( $data['data'][0]['title'] ?? $data['data'][0] , true ) . '</pre>'; // Affiche le premier événement
+            } else {
+                echo '<p style="color: orange;">⚠️ **Code 200 OK, mais aucun événement n\'est retourné dans le tableau "data".** Vérifiez le slug ou les états/types de formulaires.</p>';
+            }
+        } else {
+            echo '<h3>Corps de la Réponse (Erreur) :</h3>';
+            echo '<pre>' . esc_html($body) . '</pre>';
+            
+            if ($code === 401) {
+                echo '<p style="color: red;">**Erreur 401 Unauthorized :** Le token est invalide, vérifier les identifiants Client ID/Secret.</p>';
+            } elseif ($code === 403) {
+                 echo '<p style="color: red;">**Erreur 403 Forbidden :** La clé API n\'a pas les privilèges (AccessPublicData) ou le token a expiré.</p>';
+            }
+        }
     }
 }

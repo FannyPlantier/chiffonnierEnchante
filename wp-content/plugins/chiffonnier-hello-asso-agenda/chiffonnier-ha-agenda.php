@@ -15,31 +15,41 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $chiffonnier_ha_api_instance; 
 
 // --- Fichiers du plugin ---
+// Assurez-vous que le chemin vers votre classe API est correct
 require_once plugin_dir_path( __FILE__ ) . 'includes/class-helloasso-api.php';
 
 // Initialisation du plugin
 function ha_events_init() {
-    global $chiffonnier_ha_api_instance; // Déclare que nous allons utiliser la variable globale
+    // Déclare que nous allons utiliser la variable globale pour y stocker l'instance
+    global $chiffonnier_ha_api_instance; 
 
     // Vérification de la présence des constantes de configuration
     if ( ! defined( 'HA_CLIENT_ID' ) || ! defined( 'HA_CLIENT_SECRET' ) || ! defined( 'HA_ORGANIZATION_SLUG' ) ) {
-        // Optionnel : Afficher une notification d'erreur aux administrateurs si les constantes sont manquantes
+        // Afficher une notification d'erreur aux administrateurs si les constantes sont manquantes
         if ( current_user_can( 'manage_options' ) ) {
             add_action( 'admin_notices', function() {
                 echo '<div class="notice notice-error"><p><strong>HelloAsso Events Plugin :</strong> Les constantes <code>HA_CLIENT_ID</code>, <code>HA_CLIENT_SECRET</code> et <code>HA_ORGANIZATION_SLUG</code> doivent être définies dans votre fichier <code>wp-config.php</code>.</p></div>';
             } );
         }
-        return;
+        return; // Stoppe l'initialisation du plugin si les clés manquent
     }
     
     // Instanciation de la classe et stockage dans la variable globale
     $chiffonnier_ha_api_instance = new HelloAsso_API();
 
-        // 💡 DÉBOGAGE TEMPORAIRE
-        if ( current_user_can( 'manage_options' ) && isset( $_GET['ha_debug'] ) ) {
-            // Nous utilisons la variable globale ici
-            add_action( 'admin_init', array( $chiffonnier_ha_api_instance, 'debug_event_request' ) ); 
+    // 💡 BLOCS DE DÉBOGAGE TEMPORAIRES 💡
+    if ( current_user_can( 'manage_options' ) ) {
+        // 1. Débogage du Token (Utilisation de ?ha_debug_token=true)
+        if ( isset( $_GET['ha_debug_token'] ) ) {
+            // Appelle la méthode debug_token_status() de l'instance
+            add_action( 'admin_init', array( $chiffonnier_ha_api_instance, 'debug_token_status' ) );
         }
-        // 💡 FIN DE L'AJOUT TEMPORAIRE
+        // 2. Débogage de la Requête des Événements (Utilisation de ?ha_debug_events=true)
+        if ( isset( $_GET['ha_debug_events'] ) ) {
+            // Appelle la méthode debug_event_request() de l'instance
+            add_action( 'admin_init', array( $chiffonnier_ha_api_instance, 'debug_event_request' ) );
+        }
+    }
+    // 💡 FIN DES BLOCS DE DÉBOGAGE 💡
 }
 add_action( 'plugins_loaded', 'ha_events_init' );
