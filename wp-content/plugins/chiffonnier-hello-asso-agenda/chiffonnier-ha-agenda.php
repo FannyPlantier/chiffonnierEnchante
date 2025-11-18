@@ -11,11 +11,16 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+// Déclaration de la variable globale pour l'instance de la classe API
+global $chiffonnier_ha_api_instance; 
+
 // --- Fichiers du plugin ---
 require_once plugin_dir_path( __FILE__ ) . 'includes/class-helloasso-api.php';
 
 // Initialisation du plugin
 function ha_events_init() {
+    global $chiffonnier_ha_api_instance; // Déclare que nous allons utiliser la variable globale
+
     // Vérification de la présence des constantes de configuration
     if ( ! defined( 'HA_CLIENT_ID' ) || ! defined( 'HA_CLIENT_SECRET' ) || ! defined( 'HA_ORGANIZATION_SLUG' ) ) {
         // Optionnel : Afficher une notification d'erreur aux administrateurs si les constantes sont manquantes
@@ -27,11 +32,13 @@ function ha_events_init() {
         return;
     }
     
-    new HelloAsso_API();
+    // Instanciation de la classe et stockage dans la variable globale
+    $chiffonnier_ha_api_instance = new HelloAsso_API();
 
         // 💡 DÉBOGAGE TEMPORAIRE
         if ( current_user_can( 'manage_options' ) && isset( $_GET['ha_debug'] ) ) {
-            add_action( 'admin_init', array( $helloasso_api, 'debug_token_status' ) );
+            // Nous utilisons la variable globale ici
+            add_action( 'admin_init', array( $chiffonnier_ha_api_instance, 'debug_event_request' ) ); 
         }
         // 💡 FIN DE L'AJOUT TEMPORAIRE
 }
