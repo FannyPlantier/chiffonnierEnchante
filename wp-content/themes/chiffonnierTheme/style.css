@@ -789,7 +789,7 @@ font-size: larger;
     width: 80%;
     margin: 0 auto;
   }
-  
+
   /* ========== page en construction ========== */
   .construction-illustration {
     display: flex;
@@ -801,6 +801,6 @@ font-size: larger;
 
   /* ========== page agenda ========== */
   .event-ha {
-    padding: 0 10% 3% 10%;
+    padding: 0 8% 3% 8%;
   }
 }
