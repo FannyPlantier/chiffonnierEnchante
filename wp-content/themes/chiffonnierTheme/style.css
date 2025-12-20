@@ -789,6 +789,7 @@ font-size: larger;
     width: 80%;
     margin: 0 auto;
   }
+  
   /* ========== page en construction ========== */
   .construction-illustration {
     display: flex;
@@ -796,5 +797,10 @@ font-size: larger;
     justify-content: center;
     flex: 1 0 auto;
     padding-top: 45%;
+  }
+
+  /* ========== page agenda ========== */
+  .event-ha {
+    padding: 0 10% 3% 10%;
   }
 }
