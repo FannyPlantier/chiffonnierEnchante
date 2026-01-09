@@ -451,6 +451,11 @@ font-size: larger;
   min-height: 38rem; 
 }
 
+.event-ha iframe {
+  width: 100% !important;
+  height: 100% !important;
+}
+
 .event-ha:first-child {
   margin-left: 15%; /
 }
