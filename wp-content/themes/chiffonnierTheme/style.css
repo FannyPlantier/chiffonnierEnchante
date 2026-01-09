@@ -439,8 +439,7 @@ font-size: larger;
 /* ========== page agenda ========== */
 .event-ha {
   padding: 0 3% 3% 10%;
-  display:flex;
-  justify-content: space-between;
+  display:inline;
 }
 
 
