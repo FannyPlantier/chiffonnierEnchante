@@ -440,12 +440,16 @@ font-size: larger;
 .agenda-container {
   display: flex;
   flex-wrap: wrap; 
+  gap: 3%;
+  margin-bottom: 2%;
 }
 
 .event-ha {
   flex: 1 1 30%;
   max-width: 30%; 
   border: none; 
+  aspect-ratio: 1/1.5;
+  height:auto;
 }
 
 .event-ha:first-child {
@@ -810,7 +814,15 @@ font-size: larger;
   }
 
   /* ========== page agenda ========== */
-  .event-ha {
-    padding: 0 10% 3% 2%;
+  .agenda-container {
+    justify-content: center;
+  }
+
+  .event-ha,
+  .event-ha:first-child {
+    flex-basis: 90%;
+    max-width: 90%;
+    margin-left: 0;    
+    aspect-ratio: 1 / 1.2; 
   }
 }
