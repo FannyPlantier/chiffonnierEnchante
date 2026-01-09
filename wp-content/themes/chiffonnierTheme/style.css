@@ -437,12 +437,20 @@ font-size: larger;
 }
 
 /* ========== page agenda ========== */
-.event-ha {
-  padding: 0 3% 3% 15;
-  display:inline;
-  width: fit-content;
+.agenda-container {
+  display: flex;
+  flex-wrap: wrap; 
 }
 
+.event-ha {
+  flex: 1 1 30%;
+  max-width: 30%; 
+  border: none; 
+}
+
+.event-ha:first-child {
+  margin-left: 15%; /
+}
 
 /* ================================================== RESPONSIVE ================================================== */
 
