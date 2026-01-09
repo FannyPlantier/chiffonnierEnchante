@@ -433,7 +433,7 @@ font-size: larger;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 2%
+  padding-top: 4%
 }
 
 /* ========== page agenda ========== */
@@ -448,8 +448,7 @@ font-size: larger;
   flex: 1 1 30%;
   max-width: 30%; 
   border: none; 
-  aspect-ratio: 1/1.5;
-  height:auto;
+  min-height: 38rem; 
 }
 
 .event-ha:first-child {
