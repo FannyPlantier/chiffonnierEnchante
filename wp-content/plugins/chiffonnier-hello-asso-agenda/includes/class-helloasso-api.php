@@ -284,4 +284,4 @@ class HelloAsso_API {
             }
         }
     }
-}
+}   
