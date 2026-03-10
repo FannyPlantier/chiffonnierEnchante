@@ -85,7 +85,6 @@ class HelloAsso_API {
      */
     private function handle_token_response( $response ) {
         if ( is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) !== 200 ) {
-            // Optionnel: logguer l'erreur avec error_log($response)
             return false;
         }
 
@@ -132,7 +131,6 @@ class HelloAsso_API {
         ) );
 
         if ( is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) !== 200 ) {
-            // Loggez l'erreur de l'API ici
             return false;
         }
 
